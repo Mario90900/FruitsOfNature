@@ -1,0 +1,24 @@
+package com.mario90900.fruitsofnature.item;
+
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.EnumPlantType;
+
+public class ItemWheatSeeds extends ItemGroundSeeds{
+	
+	public static final Block plant = new Block
+	
+	public ItemWheatSeeds(){
+		super(plant);
+		this.setUnlocalizedName(UnlocalizedNames.WHEAT_SEEDS);
+	}
+	
+	public ItemWheatSeeds(ItemStack stack, int potency, int yield, int growth){
+		this();
+		this.setPotency(stack, potency);
+		this.setYield(stack, yield);
+		this.setGrowth(stack, growth);
+	}
+}

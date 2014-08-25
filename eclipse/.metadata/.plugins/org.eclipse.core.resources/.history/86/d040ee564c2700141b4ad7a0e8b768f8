@@ -1,0 +1,38 @@
+package com.mario90900.fruitsofnature.item;
+
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
+
+public class ItemWheatSeeds extends ItemBredSeedsBase implements IPlantable{
+	public ItemWheatSeeds(){
+		super();
+		this.setUnlocalizedName(UnlocalizedNames.WHEAT_SEEDS);
+	}
+	
+	public ItemWheatSeeds(ItemStack stack, int potency, int yield, int growth){
+		this();
+		this.setPotency(stack, potency);
+		this.setYield(stack, yield);
+		this.setGrowth(stack, growth);
+	}
+
+	@Override
+	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
+		return null;
+	}
+
+	@Override
+	public Block getPlant(IBlockAccess world, int x, int y, int z) {
+		return null;
+	}
+
+	@Override
+	public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
+		return 0;
+	}
+}

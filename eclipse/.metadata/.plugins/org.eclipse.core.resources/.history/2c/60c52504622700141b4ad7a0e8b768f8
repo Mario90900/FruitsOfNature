@@ -1,0 +1,5 @@
+package com.mario90900.fruitsofnature.tileentity;
+
+public class TileGroundPlant extends TilePlant{
+	
+}

@@ -1,0 +1,21 @@
+[
+{
+  "modid": "FruitsOfNature",
+  "name": "Fruits of Nature",
+  "description": "The Nature-based mod, Fruits of Nature! Allows for plant breeding, alchohol brewing, and other natural things!",
+  "version": "Alpha 1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "Mario90900"
+  ],
+  "credits": "Thanks to my friends who helped me by letting me bounce ideas off of them!",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

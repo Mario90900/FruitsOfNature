@@ -1,0 +1,30 @@
+package com.mario90900.fruitsofnature.tileentity;
+
+import java.util.Random;
+
+import net.minecraft.world.World;
+
+public class TileGroundPlant extends TilePlant{
+	public void onBlockTick(World world, int x, int y, int z, Random rand, int defGrowth) {
+		int chance = rand.nextInt(100) + 1;
+		float potency = getPotency();
+		int compValue = (int)((float) defGrowth * potency);
+		
+		if (!world.getBlock(x, y-1, z).isFertile(world, x, y-1, z)) {
+			compValue = compValue/2;
+		}
+		
+		if (chance <= compValue) {
+			int meta = world.getBlockMetadata(x, y, z);
+			world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+		}
+	}
+	
+	public int calcYield(int defYield){
+		
+	}
+	
+	public int calcPotency(int defPotency){
+		
+	}
+}

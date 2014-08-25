@@ -1,0 +1,7 @@
+package com.mario90900.fruitsofnature.tileentity;
+
+public interface TilePlant extends TileEntity {
+	int potency;
+	int yield;
+	int growth;
+}

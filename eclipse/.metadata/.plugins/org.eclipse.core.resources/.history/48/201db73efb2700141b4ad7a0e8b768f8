@@ -1,0 +1,40 @@
+package com.mario90900.fruitsofnature.item;
+
+import com.mario90900.fruitsofnature.block.BlockWheat;
+import com.mario90900.fruitsofnature.reference.DefaultPlantStats;
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+import com.mario90900.fruitsofnature.utility.LogHelper;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+
+public class ItemWheatSeeds extends ItemGroundSeeds{
+	
+	public static final Block plant = new BlockWheat();
+	
+	public ItemWheatSeeds(){
+		super(plant);
+		this.setUnlocalizedName(UnlocalizedNames.WHEAT_SEEDS);
+	}
+	
+	public ItemWheatSeeds(ItemStack stack, int potency, int yield, int growth){
+		this();
+		this.setPotency(stack, potency);
+		this.setYield(stack, yield);
+		this.setGrowth(stack, growth);
+	}
+	
+	@Override
+	public void onCreated(ItemStack stack, World world, EntityPlayer player) {
+		//Sets defaults for each plant seed, to be changed afterwards elsewhere
+		this.setPotency(stack, DefaultPlantStats.WHEAT_POTENCY);
+		LogHelper.info("Set potency of wheat to " + this.getPotency(stack));
+		this.setYield(stack, DefaultPlantStats.WHEAT_YIELD);
+		LogHelper.info("Set yield of wheat to " + this.getYield(stack));
+		this.setGrowth(stack, DefaultPlantStats.WHEAT_GROWTH);
+		LogHelper.info("Set growth of wheat to " + this.getGrowth(stack));
+	}
+}

@@ -1,0 +1,12 @@
+item.fruitsofnature:bredSeeds.name=Bred Seeds
+tile.fruitsofnature:basicPlant.name=Basic Plant
+itemGroup.fruitsofnature=Fruits of Nature
+plants.stats.level.vlow=Very Low
+plants.stats.level.low=Low
+plants.stats.level.avg=Average
+plants.stats.level.high=High
+plants.stats.level.vhigh=Very High
+plants.stats.level.none=Unknown
+plants.stats.names.potency=Potency
+plants.stats.names.yield=Yield
+plants.stats.names.growth=Growth

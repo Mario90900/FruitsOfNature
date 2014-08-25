@@ -1,0 +1,9 @@
+package com.mario90900.fruitsofnature.item;
+
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+public class ItemBredSeedsBase extends ItemFON{ //The base class for any modded seed that will have stats
+	public ItemBredSeedsBase(){
+		super();
+	}
+}

@@ -1,0 +1,7 @@
+package com.mario90900.fruitsofnature.item;
+
+public class ItemWheatCrop extends ItemStatedBase{
+	public ItemWheatCrop() {
+		
+	}
+}

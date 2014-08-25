@@ -1,0 +1,7 @@
+package com.mario90900.fruitsofnature.tileentity;
+
+import net.minecraft.tileentity.TileEntity;
+
+public class TileEntityWheatPlant extends TileEntity implements ITilePlant{
+
+}

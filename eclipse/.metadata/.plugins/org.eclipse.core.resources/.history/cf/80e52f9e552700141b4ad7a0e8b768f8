@@ -1,0 +1,8 @@
+package com.mario90900.fruitsofnature.utility;
+
+public class PlantHelper {
+	
+	public boolean plantSeeds(World world, ItemStack stack, Block plant, int x, int y, int z){
+		boolean placed = world.setBlock(x, y, z, this.plantBlock)
+	}
+}

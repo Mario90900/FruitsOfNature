@@ -1,0 +1,17 @@
+package com.mario90900.fruitsofnature.init;
+
+import com.mario90900.fruitsofnature.item.ItemBredSeedsBase;
+import com.mario90900.fruitsofnature.item.ItemFON;
+import com.mario90900.fruitsofnature.reference.Reference;
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+
+@GameRegistry.ObjectHolder(Reference.MOD_ID)
+public class ModItems {
+	public static final ItemFON bredSeeds = new ItemBredSeedsBase();
+	
+	public static void init(){
+		GameRegistry.registerItem(bredSeeds, UnlocalizedNames.BRED_SEEDS);
+	}
+}

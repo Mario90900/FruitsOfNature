@@ -1,0 +1,13 @@
+package com.mario90900.fruitsofnature.reference;
+
+public final class UnlocalizedNames {
+	
+	// Items
+	public static final String WHEAT_SEEDS = "wheatSeeds";
+	public static final String WHEAT_CROP = "wheatCrop";
+	
+	// Blocks
+	public static final String WHEAT_PLANT = "wheatPlant";
+	
+	// Other
+}

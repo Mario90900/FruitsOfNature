@@ -1,0 +1,19 @@
+package com.mario90900.fruitsofnature.tileentity;
+
+import java.util.Random;
+
+import net.minecraft.world.World;
+
+public class TileGroundPlant extends TilePlant{
+	public void onBlockTick(World world, int x, int y, int z, Random rand, float defGrowth) {
+		
+	}
+	
+	public int calcYield(int defYield){
+		
+	}
+	
+	public int calcPotency(int defPotency){
+		
+	}
+}

@@ -1,0 +1,98 @@
+package com.mario90900.fruitsofnature.block;
+
+import java.util.Random;
+
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+import com.mario90900.fruitsofnature.tileentity.TileEntityWheatPlant;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
+public class BlockWheat extends BlockPlant implements ITileEntityProvider{ //TODO Finish the dropping of items when broken, dealing with breaking it while not fully grown. Deal with the case of if the block below is broken (check that this dosnt happen already, and this can be in a base Ground Plants class).
+	
+	@SideOnly(Side.CLIENT)
+    private IIcon[] icons;
+	
+	public BlockWheat(){
+		super();
+		this.setBlockName(UnlocalizedNames.WHEAT_PLANT);
+		this.setBlockTextureName(UnlocalizedNames.WHEAT_PLANT);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int metadata) {
+		return (TileEntity) new TileEntityWheatPlant();
+	}
+	
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z) {
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityWheatPlant){
+			TileEntityWheatPlant tileWheat = (TileEntityWheatPlant) tile;
+			
+			this.potencyValue = tileWheat.calcPotency();
+			
+			float yieldFloat = tileWheat.calcYield();
+			if (yieldFloat < 1f){
+				this.minDrops = 0;
+				this.maxDrops = 1;
+			} else {
+				this.minDrops = (int) yieldFloat;
+				this.maxDrops = (int) yieldFloat;
+			}
+		}
+	}
+	
+	@Override
+	protected boolean canPlaceBlockOn(Block block) {
+        return block == Blocks.farmland;
+    }
+	
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand){
+		super.updateTick(world, x, y, z, rand);
+		
+		if (world.getBlockLightValue(x, y, z) >= 9) {
+			int meta = world.getBlockMetadata(x, y, z);
+			
+			if (meta < 7){
+				TileEntity tile = world.getTileEntity(x, y, z);
+				if (!(tile instanceof TileEntityWheatPlant))
+					return;
+
+				((TileEntityWheatPlant) tile).onBlockTick(world, x, y, z, rand);
+			}
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta) {
+        if (meta < 0 || meta > 7) {
+            meta = 7;
+        }
+        return this.icons[meta];
+    }
+	
+	public int getRenderType() {
+        return 6;
+    }
+	
+	@SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister iconReg) {
+        this.icons = new IIcon[8];
+
+        for (int i = 0; i < this.icons.length; ++i) {
+            this.icons[i] = iconReg.registerIcon(this.getTextureName() + i);
+        }
+    }
+}
