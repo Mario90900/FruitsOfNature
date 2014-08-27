@@ -11,13 +11,11 @@ public final class VanillaPlantStats {
 	
 	//Potatoes
 	public static final int POTATO_POTENCY = 1;
-	public static final int POTATO_YIELD_MIN;
-	public static final int POTATO_YIELD_MAX;
-	public static final int POTATO_GROWTH;
+	public static final int POTATO_YIELD = 2;
+	public static final int POTATO_GROWTH = 1;
 	
 	//Carrots
 	public static final int CARROT_POTENCY = 1;
-	public static final int CARROT_YIELD_MIN;
-	public static final int CARROT_YIELD_MAX;
-	public static final int CARROT_GROWTH;
+	public static final int CARROT_YIELD = 2;
+	public static final int CARROT_GROWTH = 1;
 }

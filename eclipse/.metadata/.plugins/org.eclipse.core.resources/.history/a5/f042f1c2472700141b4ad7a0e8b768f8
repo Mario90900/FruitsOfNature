@@ -1,9 +1,0 @@
-package com.mario90900.fruitsofnature.reference;
-
-public class ConvertedPlantStats {
-	
-	//Wheat
-	public static final int WHEAT_POTENCY = 1;
-	public static final int WHEAT_YIELD = 1;
-	public static final int WHEAT_GROWTH = 2;
-}

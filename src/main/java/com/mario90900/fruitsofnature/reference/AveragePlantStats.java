@@ -15,6 +15,14 @@ public final class AveragePlantStats {
 	public static final int WHEAT_GROWTH = 14;
 	
 	//Potatoes
+	public static final int POTATO_POTENCY = 1;
+	public static final int POTATO_YIELD_MIN = 1;
+	public static final int POTATO_YIELD_MAX = 4;
+	public static final int POTATO_GROWTH = 14;
 	
 	//Carrots
+	public static final int CARROT_POTENCY = 1;
+	public static final int CARROT_YIELD_MIN = 1;
+	public static final int CARROT_YIELD_MAX = 4;
+	public static final int CARROT_GROWTH = 14;
 }

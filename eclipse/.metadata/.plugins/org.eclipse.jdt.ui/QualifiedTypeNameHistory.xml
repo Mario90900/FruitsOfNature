@@ -39,9 +39,19 @@
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemWheatCrop"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.utility.PlantHelper"/>
 <fullyQualifiedTypeName name="net.minecraft.world.IBlockAccess"/>
-<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
-<fullyQualifiedTypeName name="net.minecraft.world.World"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.item.EntityItem"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.utility.StackUtils"/>
 <fullyQualifiedTypeName name="net.minecraft.block.IGrowable"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemPotatoSeeds"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemCarrotSeeds"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.block.BlockCarrot"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.tileentity.TileEntityCarrotPlant"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.tileentity.TileEntityPotatoPlant"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.block.BlockPotato"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemPotatoCrop"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemCarrotCrop"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemStack"/>
+<fullyQualifiedTypeName name="net.minecraft.world.World"/>
+<fullyQualifiedTypeName name="net.minecraft.entity.player.EntityPlayer"/>
+<fullyQualifiedTypeName name="net.minecraft.item.ItemFood"/>
 </qualifiedTypeNameHistroy>

@@ -28,7 +28,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockWheat extends BlockPlant implements ITileEntityProvider, IGrowable{ //TODO Finish the dropping of items when broken, dealing with breaking it while not fully grown. Deal with the case of if the block below is broken (check that this dosnt happen already, and this can be in a base Ground Plants class).	
+public class BlockWheat extends BlockPlant implements ITileEntityProvider, IGrowable{ //TODO Deal with the case of if the block below is broken (check that this dosnt happen already, and this can be in a base Ground Plants class).	
 	public BlockWheat(){
 		super();
 		this.setBlockName(UnlocalizedNames.WHEAT_PLANT);

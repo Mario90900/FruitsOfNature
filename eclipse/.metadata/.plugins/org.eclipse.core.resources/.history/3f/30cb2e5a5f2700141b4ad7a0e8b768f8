@@ -1,9 +1,0 @@
-package com.mario90900.fruitsofnature.tileentity;
-
-import net.minecraft.tileentity.TileEntity;
-
-public abstract class TilePlant extends TileEntity {
-	int potency;
-	int yield;
-	int growth;
-}
