@@ -18,4 +18,9 @@ public final class VanillaPlantStats {
 	public static final int CARROT_POTENCY = 1;
 	public static final int CARROT_YIELD = 2;
 	public static final int CARROT_GROWTH = 1;
+	
+	//Lilypads
+	public static final int LILYPAD_POTENCY = 1;
+	public static final int LILYPAD_YIELD = 2;
+	public static final int LILYPAD_GROWTH = 1;
 }

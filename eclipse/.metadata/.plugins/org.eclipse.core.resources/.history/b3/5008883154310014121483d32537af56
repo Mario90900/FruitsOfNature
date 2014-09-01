@@ -1,0 +1,12 @@
+package com.mario90900.fruitsofnature.item;
+
+import com.mario90900.fruitsofnature.init.ModBlocks;
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+public class ItemLilypadSeeds extends ItemWaterSeeds{
+	public ItemLilypadSeeds(){
+		super(ModBlocks.lilypadPlant);
+		this.setUnlocalizedName(UnlocalizedNames.LILYPAD_SEEDS);
+	}
+	
+}

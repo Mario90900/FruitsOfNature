@@ -1,0 +1,12 @@
+package com.mario90900.fruitsofnature.reference;
+
+public class FoodStats {
+	
+	//Crops
+	
+	//Food Products
+	
+	//Debug/Other
+	public static final int HUNGER_HEAL = -10;
+	public static final float HUNGER_SATURATION = -10.0f;
+}

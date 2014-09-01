@@ -1,0 +1,10 @@
+package com.mario90900.fruitsofnature.item;
+
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+public class ItemPotatoCrop extends ItemStatedFood{
+	public ItemPotatoCrop() {
+		super(1, 0.6f);
+		this.setUnlocalizedName(UnlocalizedNames.POTATO_CROP);
+	}
+}

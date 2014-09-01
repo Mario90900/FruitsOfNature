@@ -6,6 +6,11 @@ import com.mario90900.fruitsofnature.utility.NBTHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
+/*
+ * The Basic TileEntity for any growing plant block.
+ * Holds the stats (Both the int value 0-4 and the float percentage)
+ * of the growing plant here.
+ */
 public class TilePlant extends TileEntityFON {
 	protected float potency;
 	protected int potencyInt;

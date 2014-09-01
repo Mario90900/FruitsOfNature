@@ -80,31 +80,15 @@ public class BlockWheat extends BlockPlant implements ITileEntityProvider, IGrow
 	}
 	
 	@Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) { //Handle the dropping and transferring of stats to dropped items.
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		TileEntityWheatPlant tileWheat = getPlantTile(world, x, y, z);
 		
-		if (!(tileWheat == null)){
-			float yieldFloat = tileWheat.calcYield();
-			
-			if (yieldFloat < 1f){
-				this.minDrops = 0;
-				this.maxDrops = 1;
-			} else {
-				this.minDrops = (int) yieldFloat;
-				this.maxDrops = (int) yieldFloat;
-			}
-			
-			int numDrops;
+		if (tileWheat != null){
+			int numDrops = tileWheat.calcYield(world.rand);;
 			int potency = tileWheat.getPotencyInt();
 			int yield = tileWheat.getYieldInt();
 			int growth = tileWheat.getGrowthInt();
-			
-			if (minDrops == maxDrops) {
-				numDrops = maxDrops;
-			} else {
-				numDrops = MathHelper.getRandomIntegerInRange(world.rand, minDrops, maxDrops);
-			}
 
 			if (metadata >= 7) {
 				for (int i = 0; i < 3 + fortune; ++i) {

@@ -2,6 +2,7 @@ package com.mario90900.fruitsofnature.proxy;
 
 import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
 import com.mario90900.fruitsofnature.tileentity.TileEntityCarrotPlant;
+import com.mario90900.fruitsofnature.tileentity.TileEntityLilypadPlant;
 import com.mario90900.fruitsofnature.tileentity.TileEntityPotatoPlant;
 import com.mario90900.fruitsofnature.tileentity.TileEntityWheatPlant;
 
@@ -12,5 +13,6 @@ public abstract class CommonProxy implements IProxy{
 		GameRegistry.registerTileEntity(TileEntityWheatPlant.class, UnlocalizedNames.WHEAT_PLANT);
 		GameRegistry.registerTileEntity(TileEntityPotatoPlant.class, UnlocalizedNames.POTATO_PLANT);
 		GameRegistry.registerTileEntity(TileEntityCarrotPlant.class, UnlocalizedNames.CARROT_PLANT);
+		GameRegistry.registerTileEntity(TileEntityLilypadPlant.class, UnlocalizedNames.LILYPAD_PLANT);
 	}
 }

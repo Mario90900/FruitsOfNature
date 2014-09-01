@@ -16,6 +16,7 @@ public class ItemGroundSeeds extends ItemStatedBase implements IPlantable{
 	private Block plantBlock;
 	
 	public ItemGroundSeeds(Block plant){
+		super();
 		plantBlock = plant;
 	}
 	

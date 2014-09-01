@@ -24,9 +24,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
 	
-	protected int minDrops;
-	protected int maxDrops;
-	
 	@SideOnly(Side.CLIENT)
     private IIcon[] icons;
 	
@@ -63,7 +60,7 @@ public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
         }
     }
 	
-	public boolean canBlockStay(World world, int x, int y, int z) { //May need to be overwritten to allow for Vine plants
+	public boolean canBlockStay(World world, int x, int y, int z) { //May need to be overwritten to allow for special (Vine and others) plants
         return  world.getBlock(x, y - 1, z).canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
     }
 	
@@ -130,6 +127,7 @@ public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
 		if (this == ModBlocks.wheatPlant) return EnumPlantType.Crop;
 		if (this == ModBlocks.potatoPlant) return EnumPlantType.Crop;
 		if (this == ModBlocks.carrotPlant) return EnumPlantType.Crop;
+		if (this == ModBlocks.lilypadPlant) return EnumPlantType.Water;
 		return EnumPlantType.Plains;
 	}
 

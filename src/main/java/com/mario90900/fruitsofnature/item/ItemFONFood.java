@@ -11,9 +11,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFONFood extends ItemFood{
-	public ItemFONFood(){
-		super();
+	public ItemFONFood(int heal, float saturation){
+		super(heal, saturation, false);
 		this.setCreativeTab(CreativeTabFON.FON_TAB);
+	}
+	
+	public ItemFONFood(int heal){
+		this(heal, 0.6f);
 	}
 	
 	@Override

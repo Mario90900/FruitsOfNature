@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="cpw.mods.fml.relauncher.SideOnly"/>
-<fullyQualifiedTypeName name="cpw.mods.fml.relauncher.Side"/>
-<fullyQualifiedTypeName name="net.minecraft.client.renderer.texture.IIconRegister"/>
 <fullyQualifiedTypeName name="net.minecraft.block.material.Material"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.block.BlockFON"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.block.BlockPlant"/>
@@ -25,7 +22,6 @@
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.block.BlockWheat"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.reference.DefaultPlantStats"/>
 <fullyQualifiedTypeName name="net.minecraft.init.Items"/>
-<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.init.ModBlocks"/>
 <fullyQualifiedTypeName name="net.minecraft.creativetab.CreativeTabs"/>
 <fullyQualifiedTypeName name="net.minecraft.tileentity.TileEntity"/>
 <fullyQualifiedTypeName name="net.minecraftforge.common.util.ForgeDirection"/>
@@ -35,9 +31,7 @@
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemBredSeedsBase"/>
 <fullyQualifiedTypeName name="net.minecraft.item.Item"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.init.ModItems"/>
-<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.reference.UnlocalizedNames"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemWheatCrop"/>
-<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.utility.PlantHelper"/>
 <fullyQualifiedTypeName name="net.minecraft.world.IBlockAccess"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.item.EntityItem"/>
 <fullyQualifiedTypeName name="com.mario90900.fruitsofnature.utility.StackUtils"/>
@@ -54,4 +48,16 @@
 <fullyQualifiedTypeName name="net.minecraft.world.World"/>
 <fullyQualifiedTypeName name="net.minecraft.entity.player.EntityPlayer"/>
 <fullyQualifiedTypeName name="net.minecraft.item.ItemFood"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemFONFood"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.utility.PlantHelper"/>
+<fullyQualifiedTypeName name="net.minecraft.potion.Potion"/>
+<fullyQualifiedTypeName name="net.minecraft.potion.PotionEffect"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemHunger"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.reference.FoodStats"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.init.ModBlocks"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.reference.UnlocalizedNames"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.item.ItemLilypadSeeds"/>
+<fullyQualifiedTypeName name="net.minecraft.init.Blocks"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.tileentity.TileEntityLilypadPlant"/>
+<fullyQualifiedTypeName name="com.mario90900.fruitsofnature.block.BlockLilypad"/>
 </qualifiedTypeNameHistroy>

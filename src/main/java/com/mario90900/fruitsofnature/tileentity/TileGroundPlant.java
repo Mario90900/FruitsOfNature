@@ -12,6 +12,9 @@ public class TileGroundPlant extends TilePlant{
 		super();
 	}
 	
+	/*
+	 * Determines if the plant should grow this tick or not, and applies various modifiers to the chance (If the soil is watered for ground plants)
+	 */
 	public void onBlockTick(World world, int x, int y, int z, Random rand, int defGrowth) {
 		int chance = MathHelper.getRandomIntegerInRange(rand, 1, 100);
 		int compValue = (int)((float) defGrowth * this.growth);
@@ -24,13 +27,5 @@ public class TileGroundPlant extends TilePlant{
 			int meta = world.getBlockMetadata(x, y, z);
 			world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
 		}
-	}
-	
-	/*public int calcYield(int defYield){
-		//Keep this here incase something later could help with a default Yield calc?
-	}*/
-	
-	public int calcPotency(int defPotency){
-		return (int)((float) defPotency * this.potency);
 	}
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;tileWheat&apos; in &apos;com.mario90900.fruitsofnature.block.BlockLilypad.getDrops(...)&apos; to &apos;tileLilypad&apos;&#x0D;&#x0A;- Original project: &apos;Minecraft&apos;&#x0D;&#x0A;- Original element: &apos;com.mario90900.fruitsofnature.block.BlockLilypad.getDrops(World, int, int, int, int, int).tileWheat&apos;&#x0D;&#x0A;- Renamed element: &apos;tileWheat&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;tileWheat&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/main\/java&lt;com.mario90900.fruitsofnature.block{BlockLilypad.java[BlockLilypad~getDrops~QWorld;~I~I~I~I~I@tileWheat!2282!2345!2305!2313!QTileEntityLilypadPlant;!0!false" name="tileLilypad" references="true" stamp="1409523646508" version="1.0"/>
+</session>

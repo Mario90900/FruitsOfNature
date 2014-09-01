@@ -1,36 +1,30 @@
-[17:13:20] [main/INFO]: Logging in with username & password
-[17:13:24] [main/INFO]: Setting user: Mario90900
-[17:13:25] [Client thread/INFO]: LWJGL Version: 2.9.1
-[17:13:28] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Fruits of Nature
-[17:13:29] [Sound Library Loader/INFO]: Sound engine started
-[17:13:30] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[17:13:31] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[17:13:31] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Fruits of Nature
-[17:13:31] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[17:13:31] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[17:13:32] [Sound Library Loader/INFO]: Sound engine started
-[17:14:33] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[17:14:33] [Server thread/INFO]: Generating keypair
-[17:14:33] [Server thread/INFO]: Preparing start region for level 0
-[17:14:34] [Server thread/INFO]: Changing view distance to 12, from 10
-[17:14:34] [Server thread/INFO]: Mario90900[local:E:332a81bf] logged in with entity id 114 at (-90.0523085549411, 64.0, 146.66804205834708)
-[17:14:34] [Server thread/INFO]: Mario90900 joined the game
-[17:32:50] [Server thread/INFO]: [Mario90900: Set own game mode to Survival Mode]
-[17:32:50] [Client thread/INFO]: [CHAT] Your game mode has been updated
-[17:33:38] [Server thread/INFO]: [Mario90900: Set own game mode to Creative Mode]
-[17:33:38] [Client thread/INFO]: [CHAT] Your game mode has been updated
-[17:37:42] [Server thread/INFO]: Saving and pausing game...
-[17:37:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:37:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:37:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:50:46] [Server thread/INFO]: Saving and pausing game...
-[17:50:46] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:50:46] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:50:46] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:50:47] [Server thread/INFO]: Stopping server
-[17:50:47] [Server thread/INFO]: Saving players
-[17:50:47] [Server thread/INFO]: Saving worlds
-[17:50:47] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:50:47] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:50:47] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:50:48] [Client thread/INFO]: Stopping!
+[14:46:14] [main/INFO]: Logging in with username & password
+[14:46:18] [main/INFO]: Setting user: Mario90900
+[14:46:19] [Client thread/INFO]: LWJGL Version: 2.9.1
+[14:46:24] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Fruits of Nature
+[14:46:24] [Sound Library Loader/INFO]: Sound engine started
+[14:46:30] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[14:46:30] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[14:46:30] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Fruits of Nature
+[14:46:30] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[14:46:30] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[14:46:31] [Sound Library Loader/INFO]: Sound engine started
+[14:50:06] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[14:50:06] [Server thread/INFO]: Generating keypair
+[14:50:06] [Server thread/INFO]: Preparing start region for level 0
+[14:50:07] [Server thread/INFO]: Changing view distance to 12, from 10
+[14:50:08] [Server thread/INFO]: Mario90900[local:E:ce1e70dc] logged in with entity id 54 at (-88.45663093809647, 64.0, 145.34905042968765)
+[14:50:08] [Server thread/INFO]: Mario90900 joined the game
+[14:50:16] [Server thread/INFO]: [Mario90900: Set own game mode to Creative Mode]
+[14:50:16] [Client thread/INFO]: [CHAT] Your game mode has been updated
+[15:15:28] [Server thread/INFO]: Saving and pausing game...
+[15:15:28] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[15:15:28] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[15:15:28] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:22:36] [Server thread/INFO]: Stopping server
+[17:22:36] [Server thread/INFO]: Saving players
+[17:22:36] [Server thread/INFO]: Saving worlds
+[17:22:36] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:22:36] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:22:36] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:22:37] [Client thread/INFO]: Stopping!

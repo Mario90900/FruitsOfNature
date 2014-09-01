@@ -22,8 +22,4 @@ public class TileEntityCarrotPlant extends TileGroundPlant{
 	public float calcYieldMax(){
 		return ((float) AveragePlantStats.CARROT_YIELD_MAX * this.yield);
 	}
-	
-	public int calcPotency(){ //Just a quick math that applies the low-high change to the Potency
-		return super.calcPotency(AveragePlantStats.CARROT_POTENCY);
-	}
 }

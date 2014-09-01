@@ -19,11 +19,11 @@ public class TileEntityPotatoPlant extends TileGroundPlant{
 		return ((float) AveragePlantStats.POTATO_YIELD_MIN * this.yield); //For wheat, it is expected to return a set amount, modified by Yield.
 	}
 	
-	public float calcYieldMax(){
-		return ((float) AveragePlantStats.POTATO_YIELD_MAX * this.yield);
+	public float calcYieldMin(){
+		
 	}
 	
-	public int calcPotency(){ //Just a quick math that applies the low-high change to the Potency
-		return super.calcPotency(AveragePlantStats.POTATO_POTENCY);
+	public float calcYieldMax(){
+		return ((float) AveragePlantStats.POTATO_YIELD_MAX * this.yield);
 	}
 }

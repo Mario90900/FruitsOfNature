@@ -5,11 +5,15 @@ item.fruitsofnature:potatoSeeds.name=Potato Seeds
 item.fruitsofnature:potatoCrop.name=Potato
 item.fruitsofnature:carrotSeeds.name=Carrot Seeds
 item.fruitsofnature:carrotCrop.name=Carrot
+item.fruitsofnature:lilypadSeeds.name=Lilypad Seeds
+
+item.fruitsofnature:hunger.name=Debug Item Hunger
 
 # Blocks
 tile.fruitsofnature:wheatPlant.name=Wheat
 tile.fruitsofnature:potatoPlant.name=Potatoes
 tile.fruitsofnature:carrotPlant.name=Carrots
+tile.fruitsofnature:lilypadPlant.name=Lilypad
 
 # Creative Tabs
 itemGroup.fruitsofnature=Fruits of Nature

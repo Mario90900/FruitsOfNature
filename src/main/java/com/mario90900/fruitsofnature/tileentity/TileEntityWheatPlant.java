@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.mario90900.fruitsofnature.reference.AveragePlantStats;
 
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class TileEntityWheatPlant extends TileGroundPlant{
@@ -15,11 +16,11 @@ public class TileEntityWheatPlant extends TileGroundPlant{
 		super.onBlockTick(world, x, y, z, rand, AveragePlantStats.WHEAT_GROWTH);
 	}
 	
-	public float calcYield(){ //Probably better handled on a case by case basis
-		return ((float) AveragePlantStats.WHEAT_YIELD * this.yield); //For wheat, it is expected to return a set amount, modified by Yield.
-	}
-	
-	public int calcPotency(){ //Just a quick math that applies the low-high change to the Potency
-		return super.calcPotency(AveragePlantStats.WHEAT_POTENCY);
+	public int calcYield(Random rand){
+		if (yieldInt == 0) {
+			return MathHelper.getRandomIntegerInRange(rand, 0, 1);
+		} else {
+			return (int)(AveragePlantStats.WHEAT_YIELD * this.yield);
+		}
 	}
 }

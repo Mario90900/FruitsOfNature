@@ -9,11 +9,14 @@ public final class UnlocalizedNames {
 	public static final String POTATO_CROP = "potatoCrop";
 	public static final String CARROT_SEEDS = "carrotSeeds";
 	public static final String CARROT_CROP = "carrotCrop";
+	public static final String LILYPAD_SEEDS = "lilypadSeeds";
 	
 	// Blocks
 	public static final String WHEAT_PLANT = "wheatPlant";
 	public static final String POTATO_PLANT = "potatoPlant";
 	public static final String CARROT_PLANT = "carrotPlant";
+	public static final String LILYPAD_PLANT = "lilypadPlant";
 	
 	// Other
+	public static final String HUNGER = "hunger";
 }

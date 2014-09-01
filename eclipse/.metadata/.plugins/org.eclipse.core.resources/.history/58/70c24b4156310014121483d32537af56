@@ -1,0 +1,11 @@
+package com.mario90900.fruitsofnature.block;
+
+import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
+
+public class BlockLilypad extends BlockFON{
+	public BlockLilypad(){
+		super();
+		this.setBlockName(UnlocalizedNames.LILYPAD_PLANT);
+		this.setBlockTextureName(UnlocalizedNames.LILYPAD_PLANT);
+	}
+}
