@@ -1,15 +1,19 @@
 package com.mario90900.fruitsofnature.block;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -33,7 +37,7 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 	
 	@Override
 	protected boolean canPlaceBlockOn(Block block) {
-        return block == Blocks.water;
+        return (block == Blocks.water);
     }
 	
 	@Override
@@ -50,8 +54,9 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 		}
 	}
 	
+	@Override
 	public int getRenderType() {
-        return 6;
+        return 23;
     }
 	
 	protected Item returnSeeds() {
@@ -70,32 +75,26 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 		return (TileEntityLilypadPlant) tile;
 	}
 	
+	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB boundingBox, List list, Entity entity) {
+        if (entity == null || !(entity instanceof EntityBoat)) {
+            super.addCollisionBoxesToList(world, x, y, z, boundingBox, list, entity);
+        }
+    }
+	
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)y + this.maxY, (double)z + this.maxZ);
+    }
+	
 	@Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		TileEntityLilypadPlant tileLilypad = getPlantTile(world, x, y, z);
 		
 		if (!(tileLilypad == null)){
-			float yieldFloat = tileLilypad.calcYield();
-			
-			if (yieldFloat < 1f){
-				this.minDrops = 0;
-				this.maxDrops = 1;
-			} else {
-				this.minDrops = (int) yieldFloat;
-				this.maxDrops = (int) yieldFloat;
-			}
-			
-			int numDrops;
+			int numDrops = tileLilypad.calcYield(world.rand);
 			int potency = tileLilypad.getPotencyInt();
 			int yield = tileLilypad.getYieldInt();
 			int growth = tileLilypad.getGrowthInt();
-			
-			if (minDrops == maxDrops) {
-				numDrops = maxDrops;
-			} else {
-				numDrops = MathHelper.getRandomIntegerInRange(world.rand, minDrops, maxDrops);
-			}
 
 			if (metadata >= 7) {
 				for (int i = 0; i < 3 + fortune; ++i) {

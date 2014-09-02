@@ -2,6 +2,7 @@ package com.mario90900.fruitsofnature.tileentity;
 
 import java.util.Random;
 
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.mario90900.fruitsofnature.reference.AveragePlantStats;
@@ -15,15 +16,15 @@ public class TileEntityPotatoPlant extends TileGroundPlant{
 		super.onBlockTick(world, x, y, z, rand, AveragePlantStats.POTATO_GROWTH);
 	}
 	
-	public float calcYield(){ //Probably better handled on a case by case basis
-		return ((float) AveragePlantStats.POTATO_YIELD_MIN * this.yield); //For wheat, it is expected to return a set amount, modified by Yield.
+	public int calcYield(Random rand){
+		return MathHelper.getRandomIntegerInRange(rand, calcYieldMin(), calcYieldMax());
+		}
+	
+	public int calcYieldMin(){
+		return Math.round((float)AveragePlantStats.POTATO_YIELD_MIN * this.yield);
 	}
 	
-	public float calcYieldMin(){
-		
-	}
-	
-	public float calcYieldMax(){
-		return ((float) AveragePlantStats.POTATO_YIELD_MAX * this.yield);
+	public int calcYieldMax(){
+		return Math.round((float)AveragePlantStats.POTATO_YIELD_MAX * this.yield);
 	}
 }

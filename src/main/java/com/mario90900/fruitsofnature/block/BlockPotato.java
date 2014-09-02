@@ -76,15 +76,10 @@ public class BlockPotato extends BlockPlant implements ITileEntityProvider, IGro
 		TileEntityPotatoPlant tilePotato = getPlantTile(world, x, y, z);
 		
 		if (!(tilePotato == null)){
-			this.minDrops = Math.round(tilePotato.calcYield());
-			this.maxDrops = Math.round(tilePotato.calcYieldMax());
-			
-			int numDrops;
+			int numDrops = tilePotato.calcYield(world.rand);
 			int potency = tilePotato.getPotencyInt();
 			int yield = tilePotato.getYieldInt();
 			int growth = tilePotato.getGrowthInt();
-			
-			numDrops = MathHelper.getRandomIntegerInRange(world.rand, minDrops, maxDrops);
 
 			if (metadata >= 7) {
 				for (int i = 0; i < 3 + fortune; ++i) {

@@ -76,15 +76,10 @@ public class BlockCarrot extends BlockPlant implements ITileEntityProvider, IGro
 		TileEntityCarrotPlant tileCarrot = getPlantTile(world, x, y, z);
 		
 		if (!(tileCarrot == null)){
-			this.minDrops = Math.round(tileCarrot.calcYield());
-			this.maxDrops = Math.round(tileCarrot.calcYieldMax());
-			
-			int numDrops;
+			int numDrops = tileCarrot.calcYield(world.rand);
 			int potency = tileCarrot.getPotencyInt();
 			int yield = tileCarrot.getYieldInt();
 			int growth = tileCarrot.getGrowthInt();
-			
-			numDrops = MathHelper.getRandomIntegerInRange(world.rand, minDrops, maxDrops);
 
 			if (metadata >= 7) {
 				for (int i = 0; i < 3 + fortune; ++i) {
