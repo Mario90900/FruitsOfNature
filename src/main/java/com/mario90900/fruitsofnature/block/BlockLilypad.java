@@ -37,7 +37,7 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 	
 	@Override
 	protected boolean canPlaceBlockOn(Block block) {
-        return (block == Blocks.water);
+        return block == Blocks.water;
     }
 	
 	@Override
@@ -55,7 +55,7 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 	}
 	
 	@Override
-	public int getRenderType() {
+	public int getRenderType() { //TODO Figure out how to render it as a lilypad, but also update the icon.
         return 23;
     }
 	
@@ -75,15 +75,15 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 		return (TileEntityLilypadPlant) tile;
 	}
 	
-	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB boundingBox, List list, Entity entity) {
+	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB boundingBox, List list, Entity entity) { //I believe this is what makes boats break the vanilla lilypads
         if (entity == null || !(entity instanceof EntityBoat)) {
             super.addCollisionBoxesToList(world, x, y, z, boundingBox, list, entity);
         }
     }
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-        return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)y + this.maxY, (double)z + this.maxZ);
-    }
+			return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)y + this.maxY, (double)z + this.maxZ);
+	}
 	
 	@Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {

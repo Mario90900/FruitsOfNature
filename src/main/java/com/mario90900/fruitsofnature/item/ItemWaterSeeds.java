@@ -4,7 +4,9 @@ import com.mario90900.fruitsofnature.utility.PlantHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -20,20 +22,16 @@ public class ItemWaterSeeds extends ItemStatedBase implements IPlantable{
 		plantBlock = plant;
 	}
 	
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int gamemode, float facingX, float facingY, float facingZ) {
-        if (gamemode != 1) {
-            return false;
-        } else if (player.canPlayerEdit(x, y, z, gamemode, stack) && player.canPlayerEdit(x, y + 1, z, gamemode, stack)) {
-            if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, this) && world.isAirBlock(x, y + 1, z)){
-                PlantHelper.plantSeeds(world, stack, plantBlock, x, y+1, z);
-                --stack.stackSize;
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, true);
+		
+		if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) == Blocks.water) {
+			PlantHelper.plantSeeds(world, stack, plantBlock, mop.blockX, mop.blockY+1, mop.blockZ);
+            --stack.stackSize;
+		}
+		
+		return stack;
     }
 	
 	@Override
