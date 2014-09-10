@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mario90900.fruitsofnature.init.ModItems;
+import com.mario90900.fruitsofnature.reference.RenderIds;
 import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
 import com.mario90900.fruitsofnature.tileentity.TileEntityLilypadPlant;
 import com.mario90900.fruitsofnature.utility.PlantHelper;
@@ -56,7 +57,7 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 	
 	@Override
 	public int getRenderType() { //TODO Figure out how to render it as a lilypad, but also update the icon.
-        return 23;
+        return RenderIds.RenderLilypad;
     }
 	
 	protected Item returnSeeds() {
