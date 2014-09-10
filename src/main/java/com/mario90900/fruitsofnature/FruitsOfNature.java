@@ -38,6 +38,7 @@ public class FruitsOfNature {
 	public void init(FMLInitializationEvent event){
 		// Do setup GUI handle, Tile Ents, and General Event Handlers, and recipes
 		proxy.registerTileEntities();
+		proxy.registerRenderers();
 		
 		ModRecipes.init();
 	}
