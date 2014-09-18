@@ -1,6 +1,7 @@
 package com.mario90900.fruitsofnature.client.render;
 
 import com.mario90900.fruitsofnature.reference.RenderIds;
+import com.mario90900.fruitsofnature.utility.LogHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -47,27 +48,26 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
 		Tessellator tessellator = Tessellator.instance;
         IIcon iicon = renderer.getBlockIconFromSideAndMetadata(block, 1, world.getBlockMetadata(x, y, z));
 
-        float f = 0.015625F;
-        double d0 = (double)iicon.getMinU();
-        double d1 = (double)iicon.getMinV();
-        double d2 = (double)iicon.getMaxU();
-        double d3 = (double)iicon.getMaxV();
-        long l = (long)(x * 3129871) ^ (long)z * 116129781L ^ (long)y;
-        l = l * l * 42317861L + l * 11L;
-        int i1 = (int)(l >> 16 & 3L);
+        double minU = (double)iicon.getMinU();
+        double minV = (double)iicon.getMinV();
+        double maxU = (double)iicon.getMaxU();
+        double maxV = (double)iicon.getMaxV();
+        float nudge = 0.015625f;
+        
         tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
-        float f1 = (float)y + 0.5F;
-        float f2 = (float)z + 0.5F;
-        float f3 = (float)(i1 & 1) * 0.5F * (float)(1 - i1 / 2 % 2 * 2);
-        float f4 = (float)(i1 + 1 & 1) * 0.5F * (float)(1 - (i1 + 1) / 2 % 2 * 2);
-        tessellator.addVertexWithUV((double)(f1 + f3 - f4), (double)((float)y + f), (double)(f2 + f3 + f4), d0, d1);
-        tessellator.addVertexWithUV((double)(f1 + f3 + f4), (double)((float)y + f), (double)(f2 - f3 + f4), d2, d1);
-        tessellator.addVertexWithUV((double)(f1 - f3 + f4), (double)((float)y + f), (double)(f2 - f3 - f4), d2, d3);
-        tessellator.addVertexWithUV((double)(f1 - f3 - f4), (double)((float)y + f), (double)(f2 + f3 - f4), d0, d3);
-        tessellator.addVertexWithUV((double)(f1 - f3 - f4), (double)((float)y + f), (double)(f2 + f3 - f4), d0, d3);
-        tessellator.addVertexWithUV((double)(f1 - f3 + f4), (double)((float)y + f), (double)(f2 - f3 - f4), d2, d3);
-        tessellator.addVertexWithUV((double)(f1 + f3 + f4), (double)((float)y + f), (double)(f2 - f3 + f4), d2, d1);
-        tessellator.addVertexWithUV((double)(f1 + f3 - f4), (double)((float)y + f), (double)(f2 + f3 + f4), d0, d1);
+        tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+        
+        //Draws the bottom of the Lilypad Plant
+        tessellator.addVertexWithUV(x, y + nudge, z, minU, minV);
+        tessellator.addVertexWithUV(x + 1, y + nudge, z, minU, maxV);
+        tessellator.addVertexWithUV(x + 1, y + nudge, z + 1, maxU, maxV);
+        tessellator.addVertexWithUV(x, y + nudge, z + 1, maxU, minV);
+        
+        //Draws the top of the Lilypad Plant
+        tessellator.addVertexWithUV(x, y + nudge, z, minU, minV);
+        tessellator.addVertexWithUV(x, y + nudge, z + 1, maxU, minV);
+        tessellator.addVertexWithUV(x + 1, y + nudge, z + 1, maxU, maxV);
+        tessellator.addVertexWithUV(x + 1, y + nudge, z, minU, maxV);
         return true;
 	}
 }

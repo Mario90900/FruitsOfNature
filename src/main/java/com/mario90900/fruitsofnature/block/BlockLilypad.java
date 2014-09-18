@@ -76,7 +76,7 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 		return (TileEntityLilypadPlant) tile;
 	}
 	
-	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB boundingBox, List list, Entity entity) { //I believe this is what makes boats break the vanilla lilypads
+	/*public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB boundingBox, List list, Entity entity) { //I believe this is what makes boats break the vanilla lilypads
         if (entity == null || !(entity instanceof EntityBoat)) {
             super.addCollisionBoxesToList(world, x, y, z, boundingBox, list, entity);
         }
@@ -84,7 +84,7 @@ public class BlockLilypad extends BlockPlant implements ITileEntityProvider, IGr
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
 			return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)y + this.maxY, (double)z + this.maxZ);
-	}
+	}*/ //Got rid of the collision as it was a bit funky.
 	
 	@Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
