@@ -30,4 +30,9 @@ public final class AveragePlantStats {
 	public static final int LILYPAD_POTENCY = 1;
 	public static final int LILYPAD_YIELD = 1;
 	public static final int LILYPAD_GROWTH = 10;
+	
+	//Vines
+	public static final int VINE_POTENCY = 1;
+	public static final int VINE_YIELD = 1;
+	public static final int VINE_GROWTH = 18;
 }

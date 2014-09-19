@@ -6,6 +6,7 @@ item.fruitsofnature:potatoCrop.name=Potato
 item.fruitsofnature:carrotSeeds.name=Carrot Seeds
 item.fruitsofnature:carrotCrop.name=Carrot
 item.fruitsofnature:lilypadSeeds.name=Lilypad Seeds
+item.fruitsofnature:vineSeeds.name=Vine Seeds
 
 item.fruitsofnature:hunger.name=Debug Item Hunger
 
@@ -14,6 +15,7 @@ tile.fruitsofnature:wheatPlant.name=Wheat
 tile.fruitsofnature:potatoPlant.name=Potatoes
 tile.fruitsofnature:carrotPlant.name=Carrots
 tile.fruitsofnature:lilypadPlant.name=Lilypad
+tile.fruitsofnature:vinePlant.name=Vines
 
 # Creative Tabs
 itemGroup.fruitsofnature=Fruits of Nature

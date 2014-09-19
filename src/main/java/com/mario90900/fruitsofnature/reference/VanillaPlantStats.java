@@ -23,4 +23,9 @@ public final class VanillaPlantStats {
 	public static final int LILYPAD_POTENCY = 1;
 	public static final int LILYPAD_YIELD = 2;
 	public static final int LILYPAD_GROWTH = 1;
+	
+	//Vines
+	public static final int VINE_POTENCY = 1;
+	public static final int VINE_YIELD = 1;
+	public static final int VINE_GROWTH = 2;
 }
