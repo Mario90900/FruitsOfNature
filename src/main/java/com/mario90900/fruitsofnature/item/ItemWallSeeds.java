@@ -1,5 +1,6 @@
 package com.mario90900.fruitsofnature.item;
 
+import com.mario90900.fruitsofnature.block.BlockWallPlant;
 import com.mario90900.fruitsofnature.utility.PlantHelper;
 
 import net.minecraft.block.Block;
@@ -27,18 +28,19 @@ public class ItemWallSeeds extends ItemStatedBase implements IPlantable{
 		MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, true);
 		
 		if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-			if (mop.sideHit != 0 && mop.sideHit != 1 && world.getBlock(mop.blockX, mop.blockY, mop.blockZ).isSideSolid(world, mop.blockX, mop.blockY, mop.blockZ, ForgeDirection.getOrientation(mop.sideHit)) == true){
+			if (mop.sideHit != 0 && mop.sideHit != 1 && world.getBlock(mop.blockX, mop.blockY, mop.blockZ).isNormalCube() == true){
+				BlockWallPlant block;
 				switch (mop.sideHit){
-				case 2:
+				case 5: //Actually the WEST side of the block! Do not listen to the sideHit variable. It is dumb.
 					PlantHelper.plantSeeds(world, stack, plantBlock, mop.blockX + 1, mop.blockY, mop.blockZ);
 					break;
-				case 3:
+				case 4: //Actually the EAST side of the block! Do not listen to the sideHit variable. It is dumb.
 					PlantHelper.plantSeeds(world, stack, plantBlock, mop.blockX - 1, mop.blockY, mop.blockZ);
 					break;
-				case 4:
+				case 2: //Actually the NORTH side of the block! Do not listen to the sideHit variable. It is dumb.
 					PlantHelper.plantSeeds(world, stack, plantBlock, mop.blockX, mop.blockY, mop.blockZ - 1);
 					break;
-				case 5:
+				case 3: //Actually the SOUTH side of the block! Do not listen to the sideHit variable. It is dumb.
 					PlantHelper.plantSeeds(world, stack, plantBlock, mop.blockX, mop.blockY, mop.blockZ + 1);
 					break;
 				}

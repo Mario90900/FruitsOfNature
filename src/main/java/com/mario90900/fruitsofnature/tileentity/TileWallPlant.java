@@ -2,12 +2,25 @@ package com.mario90900.fruitsofnature.tileentity;
 
 import java.util.Random;
 
+import com.mario90900.fruitsofnature.block.BlockVine;
+import com.mario90900.fruitsofnature.block.BlockWallPlant;
+import com.mario90900.fruitsofnature.init.ModBlocks;
+import com.mario90900.fruitsofnature.utility.PlantHelper;
+
+import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class TileWallPlant extends TilePlant{
-	public TileWallPlant(){ //TODO properly allow for the growth in whatever direction, and decide on if it should be rightclick harvest or break harvest
+	protected Block plantBlock;
+	
+	public TileWallPlant(Block plant){
 		super();
+		plantBlock = plant;
+	}
+	
+	public Block getPlantBlock(){
+		return plantBlock;
 	}
 	
 	public void onBlockTick(World world, int x, int y, int z, Random rand, int defGrowth) {
@@ -17,7 +30,12 @@ public class TileWallPlant extends TilePlant{
 		
 		if (chance <= compValue) {
 			int meta = world.getBlockMetadata(x, y, z);
-			world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
+			if (meta < 6){
+				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
+			} else {
+				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
+				PlantHelper.wallPlantExpand(world, this, plantBlock, x, y, z, ((BlockWallPlant)world.getBlock(x, y, z)).growDirection());
+			}
 		}
 	}
 }

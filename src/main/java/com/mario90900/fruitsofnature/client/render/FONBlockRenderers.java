@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
@@ -28,6 +29,8 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		if (modelId == RenderIds.RenderLilypad){
 			return renderLilypad(world, x, y, z, block, renderer);
+		} else if (modelId == RenderIds.RenderVine){
+			return renderVine(world, x, y, z, block, renderer);
 		} else {
 			return false;
 		}
@@ -48,10 +51,10 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
 		Tessellator tessellator = Tessellator.instance;
         IIcon iicon = renderer.getBlockIconFromSideAndMetadata(block, 1, world.getBlockMetadata(x, y, z));
 
-        double minU = (double)iicon.getMinU();
-        double minV = (double)iicon.getMinV();
-        double maxU = (double)iicon.getMaxU();
-        double maxV = (double)iicon.getMaxV();
+        double minU = (double)iicon.getMinU(); //U is the horizontal coordinate of the texture, starting with 0 at the left
+        double minV = (double)iicon.getMinV(); //V is the vertical coordinate of the texture, starting with 0 at the top
+        double maxU = (double)iicon.getMaxU(); //Max U is the rightmost value
+        double maxV = (double)iicon.getMaxV(); //Max V is the bottommost value
         float nudge = 0.015625f;
         
         tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
@@ -59,15 +62,84 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
         
         //Draws the bottom of the Lilypad Plant
         tessellator.addVertexWithUV(x, y + nudge, z, minU, minV);
-        tessellator.addVertexWithUV(x + 1, y + nudge, z, minU, maxV);
+        tessellator.addVertexWithUV(x + 1, y + nudge, z, maxU, minV);
         tessellator.addVertexWithUV(x + 1, y + nudge, z + 1, maxU, maxV);
-        tessellator.addVertexWithUV(x, y + nudge, z + 1, maxU, minV);
+        tessellator.addVertexWithUV(x, y + nudge, z + 1, minU, maxV);
         
         //Draws the top of the Lilypad Plant
         tessellator.addVertexWithUV(x, y + nudge, z, minU, minV);
-        tessellator.addVertexWithUV(x, y + nudge, z + 1, maxU, minV);
+        tessellator.addVertexWithUV(x, y + nudge, z + 1, minU, maxV);
         tessellator.addVertexWithUV(x + 1, y + nudge, z + 1, maxU, maxV);
-        tessellator.addVertexWithUV(x + 1, y + nudge, z, minU, maxV);
+        tessellator.addVertexWithUV(x + 1, y + nudge, z, maxU, minV);
+        return true;
+	}
+	
+	protected boolean renderVine(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer){
+		Tessellator tessellator = Tessellator.instance;
+        IIcon iicon = renderer.getBlockIconFromSideAndMetadata(block, 1, world.getBlockMetadata(x, y, z));
+
+        double minU = (double)iicon.getMinU();
+        double minV = (double)iicon.getMinV();
+        double maxU = (double)iicon.getMaxU();
+        double maxV = (double)iicon.getMaxV();
+        float nudge = 0.015625f;
+        float neganudge = 1 - nudge;
+        
+        tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+        tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+        
+        if (world.getBlock(x, y, z + 1).isNormalCube()){ //Render South faces if solid face is present
+        	//Draw the side facing the solid face
+        	tessellator.addVertexWithUV(x, y + 1, z + neganudge, maxU, minV);
+        	tessellator.addVertexWithUV(x, y, z + neganudge, maxU, maxV);
+        	tessellator.addVertexWithUV(x + 1, y, z + neganudge, minU, maxV);
+        	tessellator.addVertexWithUV(x + 1, y + 1, z + neganudge, minU, minV);
+        	
+        	//Draw the side facing the center of the vine block
+        	tessellator.addVertexWithUV(x, y + 1, z + neganudge, maxU, minV);
+        	tessellator.addVertexWithUV(x + 1, y + 1, z + neganudge, minU, minV);
+        	tessellator.addVertexWithUV(x + 1, y, z + neganudge, minU, maxV);
+        	tessellator.addVertexWithUV(x, y, z + neganudge, maxU, maxV);
+		}
+        if (world.getBlock(x - 1, y, z).isNormalCube()){ //Render West faces if solid face is present
+			//Draw the side facing the solid face
+        	tessellator.addVertexWithUV(x + nudge, y + 1, z, maxU, minV);
+        	tessellator.addVertexWithUV(x + nudge, y, z, maxU, maxV);
+        	tessellator.addVertexWithUV(x + nudge, y, z + 1, minU, maxV);
+        	tessellator.addVertexWithUV(x + nudge, y + 1, z + 1, minU, minV);
+        	
+        	//Draw the side facing the center of the vine block
+        	tessellator.addVertexWithUV(x + nudge, y + 1, z, maxU, minV);
+        	tessellator.addVertexWithUV(x + nudge, y + 1, z + 1, minU, minV);
+        	tessellator.addVertexWithUV(x + nudge, y, z + 1, minU, maxV);
+        	tessellator.addVertexWithUV(x + nudge, y, z, maxU, maxV);
+		}
+        if (world.getBlock(x, y, z - 1).isNormalCube()){ //Render North faces if solid face is present
+        	//Draw the side facing the solid face
+        	tessellator.addVertexWithUV(x, y + 1, z + nudge, minU, minV);
+        	tessellator.addVertexWithUV(x + 1, y + 1, z + nudge, maxU, minV);
+        	tessellator.addVertexWithUV(x + 1, y, z + nudge, maxU, maxV);
+        	tessellator.addVertexWithUV(x, y, z + nudge, minU, maxV);
+        	
+        	//Draw the side facing the center of the vine block
+        	tessellator.addVertexWithUV(x, y + 1, z + nudge, minU, minV);
+        	tessellator.addVertexWithUV(x, y, z + nudge, minU, maxV);
+        	tessellator.addVertexWithUV(x + 1, y, z + nudge, maxU, maxV);
+        	tessellator.addVertexWithUV(x + 1, y + 1, z + nudge, maxU, minV);
+		}
+        if (world.getBlock(x + 1, y, z).isNormalCube()){ //Render East faces if solid face is present
+        	//Draw the side facing the solid face
+        	tessellator.addVertexWithUV(x + neganudge, y + 1, z, minU, minV);
+        	tessellator.addVertexWithUV(x + neganudge, y + 1, z + 1, maxU, minV);
+        	tessellator.addVertexWithUV(x + neganudge, y, z + 1, maxU, maxV);
+        	tessellator.addVertexWithUV(x + neganudge, y, z, minU, maxV);
+        	
+        	//Draw the side facing the center of the vine block
+        	tessellator.addVertexWithUV(x + neganudge, y + 1, z, minU, minV);
+        	tessellator.addVertexWithUV(x + neganudge, y, z, minU, maxV);
+        	tessellator.addVertexWithUV(x + neganudge, y, z + 1, maxU, maxV);
+        	tessellator.addVertexWithUV(x + neganudge, y + 1, z + 1, maxU, minV);
+		}
         return true;
 	}
 }

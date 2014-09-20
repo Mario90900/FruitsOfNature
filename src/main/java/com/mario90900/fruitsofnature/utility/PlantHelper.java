@@ -13,8 +13,9 @@ public class PlantHelper {
 	
 	public static boolean plantSeeds(World world, ItemStack stack, Block plant, int x, int y, int z) { //This will turn the seed in the stack into a proper plant block that it was given, copying over the stats from the ItemStack to the TileEnt
 		boolean placed = world.setBlock(x, y, z, plant);
-		if (!placed)
+		if (!placed){
 			return false;
+		}
 		
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if (!(tile instanceof TilePlant)) {
@@ -23,8 +24,44 @@ public class PlantHelper {
 		}
 		
 		TilePlant plantTile = (TilePlant) tile;
-		
 		plantTile.setStats(getPotency(stack), getYield(stack), getGrowth(stack));
+		
+		return true;
+	}
+	
+	public static boolean wallPlantExpand(World world, TileEntity tile, Block plant, int x, int y, int z, boolean dir){ //Called when a wall plant is grown fully, either by time or by bonemeal
+		TilePlant sentPlantTile = (TilePlant) tile;
+		boolean placed = false;
+		TileEntity tempTile = tile;
+		
+		if (dir){
+			if (world.isAirBlock(x, y + 1, z)){
+				placed = world.setBlock(x, y + 1, z, plant);
+				if (!placed){
+					return false;
+				}
+				tempTile = world.getTileEntity(x, y + 1, z);
+				if (!(tile instanceof TilePlant)){
+					world.setBlockToAir(x, y + 1, z);
+					return false;
+				}
+			}
+		} else {
+			if (world.isAirBlock(x, y - 1, z)){
+				placed = world.setBlock(x, y - 1, z, plant);
+				if (!placed){
+					return false;
+				}
+				tempTile = world.getTileEntity(x, y - 1, z);
+				if (!(tile instanceof TilePlant)){
+					world.setBlockToAir(x, y - 1, z);
+					return false;
+				}
+			}
+		}
+		
+		TilePlant newPlantTile = (TilePlant) tempTile;
+		newPlantTile.setStats(sentPlantTile.getPotencyInt(), sentPlantTile.getYieldInt(), sentPlantTile.getGrowthInt());
 		
 		return true;
 	}

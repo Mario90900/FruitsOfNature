@@ -5,11 +5,12 @@ import java.util.Random;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.mario90900.fruitsofnature.init.ModBlocks;
 import com.mario90900.fruitsofnature.reference.AveragePlantStats;
 
 public class TileEntityVinePlant extends TileWallPlant{
 	public TileEntityVinePlant(){
-		super();
+		super(ModBlocks.vinePlant);
 	}
 	
 	public void onBlockTick(World world, int x, int y, int z, Random rand){ //This will calculate when the plant should grow, and change the meta accordingly

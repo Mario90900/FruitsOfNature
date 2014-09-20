@@ -7,21 +7,24 @@ import com.mario90900.fruitsofnature.init.ModItems;
 import com.mario90900.fruitsofnature.reference.RenderIds;
 import com.mario90900.fruitsofnature.reference.UnlocalizedNames;
 import com.mario90900.fruitsofnature.tileentity.TileEntityVinePlant;
+import com.mario90900.fruitsofnature.utility.LogHelper;
 import com.mario90900.fruitsofnature.utility.PlantHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockVine extends BlockPlant implements ITileEntityProvider, IGrowable{
+public class BlockVine extends BlockWallPlant implements ITileEntityProvider, IGrowable{
 	public BlockVine(){
-		super();
+		super(false);
 		this.setBlockName(UnlocalizedNames.VINE_PLANT);
 		this.setBlockTextureName(UnlocalizedNames.VINE_PLANT);
 	}
@@ -40,7 +43,7 @@ public class BlockVine extends BlockPlant implements ITileEntityProvider, IGrowa
 	public void updateTick(World world, int x, int y, int z, Random rand){
 		super.updateTick(world, x, y, z, rand);
 		
-		if (world.getBlockLightValue(x, y, z) >= 9) {
+		if (world.getBlockLightValue(x, y, z) >= 6) {
 			int meta = world.getBlockMetadata(x, y, z);
 			
 			if (meta < 7){
@@ -48,10 +51,6 @@ public class BlockVine extends BlockPlant implements ITileEntityProvider, IGrowa
 				tile.onBlockTick(world, x, y, z, rand);
 			}
 		}
-	}
-	
-	public boolean growDirection(){ //Intended for use on Wall Plants to determine if they grow upwards (true), or downwards (false)
-		return false;
 	}
 	
 	public int getRenderType() {
