@@ -33,6 +33,11 @@ public final class AveragePlantStats {
 	
 	//Vines
 	public static final int VINE_POTENCY = 1;
-	public static final int VINE_YIELD = 1;
+	public static final int VINE_YIELD = 2;
 	public static final int VINE_GROWTH = 18;
+	
+	//Pumpkins
+	public static final int PUMPKIN_POTENCY = 1;
+	public static final int PUMPKIN_YIELD = 1;
+	public static final int PUMPKIN_GROWTH = 14;
 }

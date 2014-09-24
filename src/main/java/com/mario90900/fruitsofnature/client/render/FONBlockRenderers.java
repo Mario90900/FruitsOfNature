@@ -1,5 +1,6 @@
 package com.mario90900.fruitsofnature.client.render;
 
+import com.mario90900.fruitsofnature.init.ModBlocks;
 import com.mario90900.fruitsofnature.reference.RenderIds;
 import com.mario90900.fruitsofnature.utility.LogHelper;
 
@@ -30,7 +31,9 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
 		if (modelId == RenderIds.RenderLilypad){
 			return renderLilypad(world, x, y, z, block, renderer);
 		} else if (modelId == RenderIds.RenderVine){
-			return renderVine(world, x, y, z, block, renderer);
+			return renderWallVine(world, x, y, z, block, renderer);
+		} else if (modelId == RenderIds.RenderPumpkinVine){
+			return renderPumpkinVineGround(world, x, y, z, block, renderer);
 		} else {
 			return false;
 		}
@@ -74,7 +77,7 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
         return true;
 	}
 	
-	protected boolean renderVine(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer){
+	protected boolean renderWallVine(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer){
 		Tessellator tessellator = Tessellator.instance;
         IIcon iicon = renderer.getBlockIconFromSideAndMetadata(block, 1, world.getBlockMetadata(x, y, z));
 
@@ -141,5 +144,146 @@ public class FONBlockRenderers implements ISimpleBlockRenderingHandler{
         	tessellator.addVertexWithUV(x + neganudge, y + 1, z + 1, maxU, minV);
 		}
         return true;
+	}
+	
+	protected boolean renderPumpkinVineGround(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer){
+		Tessellator tessellator = Tessellator.instance;
+        IIcon iicon = renderer.getBlockIconFromSideAndMetadata(block, 1, world.getBlockMetadata(x, y, z));
+        
+        double minU = (double)iicon.getMinU();
+        double minV = (double)iicon.getMinV();
+        double maxU = (double)iicon.getMaxU();
+        double maxV = (double)iicon.getMaxV();
+        double halfV = (double)iicon.getInterpolatedV(8);
+        
+        tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+        tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
+        
+        tessellator.addVertexWithUV(x, y, z, minU, maxV);
+        tessellator.addVertexWithUV(x + 1, y, z + 1, maxU, maxV);
+        tessellator.addVertexWithUV(x + 1, y + 0.5, z + 1, maxU, halfV);
+        tessellator.addVertexWithUV(x, y + 0.5, z, minU, halfV);
+        
+        tessellator.addVertexWithUV(x + 1, y, z + 1, minU, maxV);
+        tessellator.addVertexWithUV(x, y, z, maxU, maxV);
+        tessellator.addVertexWithUV(x, y + 0.5, z, maxU, halfV);
+        tessellator.addVertexWithUV(x + 1, y + 0.5, z + 1, minU, halfV);
+        
+        tessellator.addVertexWithUV(x, y, z + 1, minU, maxV);
+        tessellator.addVertexWithUV(x + 1, y, z, maxU, maxV);
+        tessellator.addVertexWithUV(x + 1, y + 0.5, z, maxU, halfV);
+        tessellator.addVertexWithUV(x, y + 0.5, z + 1, minU, halfV);
+        
+        tessellator.addVertexWithUV(x + 1, y, z, minU, maxV);
+        tessellator.addVertexWithUV(x, y, z + 1, maxU, maxV);
+        tessellator.addVertexWithUV(x, y + 0.5, z + 1, maxU, halfV);
+        tessellator.addVertexWithUV(x + 1, y + 0.5, z, minU, halfV);
+        
+        if (world.getBlockMetadata(x, y, z) == 3){
+        	if (world.getBlock(x, y, z + 1) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x, y, z + 1) >= 4){
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 1, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 1, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 1, minU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 1, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else if (world.getBlock(x + 1, y, z) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x + 1, y, z) >= 4) {
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 1, y, z + 0.5, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y, z + 0.5, minU, minV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else if (world.getBlock(x, y, z - 1) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x, y, z - 1) >= 4) {
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z, minU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else if (world.getBlock(x - 1, y, z) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x - 1, y, z) >= 4) {
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x, y, z + 0.5, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x, y, z + 0.5, minU, minV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else {
+        		tessellator.addVertexWithUV(x, y + 0.5, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y + 0.5, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x, y + 0.5, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, minU, minV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 1, y + 0.5, z + 0.5, maxU, halfV);
+        	}
+        } else if (world.getBlockMetadata(x, y, z) >= 4){
+        	if (world.getBlock(x, y, z + 1) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x, y, z + 1) <= 3){
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 1, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 1, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 1, minU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 1, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else if (world.getBlock(x + 1, y, z) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x + 1, y, z) <= 3) {
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 1, y, z + 0.5, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y, z + 0.5, minU, minV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else if (world.getBlock(x, y, z - 1) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x, y, z - 1) <= 3) {
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y, z, minU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else if (world.getBlock(x - 1, y, z) == ModBlocks.pumpkinPlant && world.getBlockMetadata(x - 1, y, z) <= 3) {
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x, y, z + 0.5, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x + 0.5, y, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x, y, z + 0.5, minU, minV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 0.5, y + 1, z + 0.5, maxU, halfV);
+        	} else {
+        		tessellator.addVertexWithUV(x, y + 0.5, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y + 0.5, z + 0.5, maxU, halfV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, minU, minV);
+        		
+        		tessellator.addVertexWithUV(x, y + 0.5, z + 0.5, minU, halfV);
+        		tessellator.addVertexWithUV(x, y + 1, z + 0.5, minU, minV);
+        		tessellator.addVertexWithUV(x + 1, y + 1, z + 0.5, maxU, minV);
+        		tessellator.addVertexWithUV(x + 1, y + 0.5, z + 0.5, maxU, halfV);
+        	}
+        }
+		return true;
 	}
 }

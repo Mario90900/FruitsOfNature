@@ -8,6 +8,7 @@ import com.mario90900.fruitsofnature.item.ItemHunger;
 import com.mario90900.fruitsofnature.item.ItemLilypadSeeds;
 import com.mario90900.fruitsofnature.item.ItemPotatoCrop;
 import com.mario90900.fruitsofnature.item.ItemPotatoSeeds;
+import com.mario90900.fruitsofnature.item.ItemPumpkinSeeds;
 import com.mario90900.fruitsofnature.item.ItemVineSeeds;
 import com.mario90900.fruitsofnature.item.ItemWheatCrop;
 import com.mario90900.fruitsofnature.item.ItemWheatSeeds;
@@ -27,6 +28,7 @@ public class ModItems {
 	public static final ItemFONFood carrotCrop = new ItemCarrotCrop();
 	public static final ItemFON lilypadSeeds = new ItemLilypadSeeds();
 	public static final ItemFON vineSeeds = new ItemVineSeeds();
+	public static final ItemFON pumpkinSeeds = new ItemPumpkinSeeds();
 	
 	//Other Items!
 	public static final ItemFONFood hunger = new ItemHunger();
@@ -41,6 +43,7 @@ public class ModItems {
 		GameRegistry.registerItem(carrotCrop, UnlocalizedNames.CARROT_CROP);
 		GameRegistry.registerItem(lilypadSeeds, UnlocalizedNames.LILYPAD_SEEDS);
 		GameRegistry.registerItem(vineSeeds, UnlocalizedNames.VINE_SEEDS);
+		GameRegistry.registerItem(pumpkinSeeds, UnlocalizedNames.PUMPKIN_SEEDS);
 		
 		//Other Items!
 		GameRegistry.registerItem(hunger, UnlocalizedNames.HUNGER);

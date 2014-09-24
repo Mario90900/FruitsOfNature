@@ -21,7 +21,7 @@ public class BlockWallPlant extends BlockPlant{
 	}
 	
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z){ //Keep this method in all Wall plants
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z){
 		if (world.getBlock(x, y, z + 1).isNormalCube()){ //Checks the South block
 			this.setBlockBounds(0.0f, 0.0f, 0.875f, 1.0f, 1.0f, 1.0f);
 		} else if (world.getBlock(x - 1, y, z).isNormalCube()){ //Checks the West block

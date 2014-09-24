@@ -25,7 +25,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
 	
 	@SideOnly(Side.CLIENT)
-    private IIcon[] icons;
+    protected IIcon[] icons;
 	
 	public BlockPlant(){
 		super(Material.plants);

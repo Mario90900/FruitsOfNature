@@ -3,6 +3,7 @@ package com.mario90900.fruitsofnature.reference;
 public final class VanillaPlantStats {
 	
 	//The default plant stats a seed will have resulting from a conversion from a vanilla plant/seed to a modded seed. These are the stat levels.
+	//Debating if all plants should just start at low everything to begin with.
 	
 	//Wheat
 	public static final int WHEAT_POTENCY = 1;
@@ -28,4 +29,9 @@ public final class VanillaPlantStats {
 	public static final int VINE_POTENCY = 1;
 	public static final int VINE_YIELD = 1;
 	public static final int VINE_GROWTH = 2;
+	
+	//Pumpkins
+	public static final int PUMPKIN_POTENCY = 1;
+	public static final int PUMPKIN_YIELD = 1;
+	public static final int PUMPKIN_GROWTH = 1;
 }

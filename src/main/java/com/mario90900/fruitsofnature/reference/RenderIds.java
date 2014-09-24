@@ -5,4 +5,5 @@ public class RenderIds {
 	//Blocks
 	public static int RenderLilypad;
 	public static int RenderVine;
+	public static int RenderPumpkinVine;
 }
