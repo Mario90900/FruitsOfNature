@@ -44,7 +44,6 @@ public class BlockPumpkin extends BlockVineGroundPlant implements ITileEntityPro
 		
 		if (world.getBlockLightValue(x, y, z) >= 6) {
 			int meta = world.getBlockMetadata(x, y, z);
-			LogHelper.info("Pumpkin tick, and lit! Meta is: " + meta);
 			
 			if (meta < 3 || (meta > 3 && meta < 7) || meta == 8){
 				TileEntityPumpkinPlant tile = getPlantTile(world, x, y, z);
@@ -55,10 +54,9 @@ public class BlockPumpkin extends BlockVineGroundPlant implements ITileEntityPro
 	
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int var6, float facingX, float facingY, float facingZ) {
-		if (player.getCurrentEquippedItem() == null && world.getBlockMetadata(x, y, z) == 7){ //If the plant is Metadata 7, it is the fruit-half and it is ready to be harvested.
+		if (!world.isRemote && player.getCurrentEquippedItem() == null && world.getBlockMetadata(x, y, z) == 7){ //If the plant is Metadata 7, it is the fruit-half and it is ready to be harvested.
 			TileEntityPumpkinPlant tilePumpkin = getPlantTile(world, x, y, z);
 			int numDrops = tilePumpkin.calcYield(world.rand);
-			LogHelper.info("Whoa, the pumpkin dropped this many: " + numDrops + " and the yieldInt is: " + tilePumpkin.getYieldInt());
 			if (numDrops != 0){
 				ItemStack itemCrop = new ItemStack(this.returnCrop(), numDrops, 0);
 				this.dropBlockAsItem(world, x, y, z, itemCrop);
@@ -100,15 +98,7 @@ public class BlockPumpkin extends BlockVineGroundPlant implements ITileEntityPro
 			int yield = tilePumpkin.getYieldInt();
 			int growth = tilePumpkin.getGrowthInt();
 
-			if (metadata == 7) {
-				for (int i = 0; i < 3 + fortune; ++i) {
-					if (world.rand.nextInt(15) <= metadata) {
-						ItemStack itemSeed = new ItemStack(this.returnSeeds(), 1, 0);
-						PlantHelper.setStats(itemSeed, potency, yield, growth);
-						ret.add(itemSeed);
-					}
-				}
-			} else if (metadata >= 8) {
+			if (metadata >= 7) {
 				for (int i = 0; i < 3 + fortune; ++i) {
 					if (world.rand.nextInt(15) <= metadata) {
 						ItemStack itemSeed = new ItemStack(this.returnSeeds(), 1, 0);
@@ -121,8 +111,6 @@ public class BlockPumpkin extends BlockVineGroundPlant implements ITileEntityPro
 				PlantHelper.setStats(itemSeed, potency, yield, growth);
 				ret.add(itemSeed);
 			}
-			
-			removeTileEnt(world, x, y, z, metadata);
 		}
 
         return ret;

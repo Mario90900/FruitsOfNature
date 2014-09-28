@@ -26,7 +26,7 @@ public class ItemWaterSeeds extends ItemStatedBase implements IPlantable{
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, true);
 		
-		if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) == Blocks.water) {
+		if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && world.getBlock(mop.blockX, mop.blockY, mop.blockZ) == Blocks.water && world.getBlock(mop.blockX, mop.blockY + 1, mop.blockZ) == Blocks.air) {
 			PlantHelper.plantSeeds(world, stack, plantBlock, mop.blockX, mop.blockY+1, mop.blockZ);
             --stack.stackSize;
 		}

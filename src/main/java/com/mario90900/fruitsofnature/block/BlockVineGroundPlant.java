@@ -2,6 +2,7 @@ package com.mario90900.fruitsofnature.block;
 
 import com.mario90900.fruitsofnature.init.ModBlocks;
 import com.mario90900.fruitsofnature.tileentity.TileVineGroundPlant;
+import com.mario90900.fruitsofnature.utility.LogHelper;
 import com.mario90900.fruitsofnature.utility.PlantHelper;
 
 import cpw.mods.fml.relauncher.Side;
@@ -58,61 +59,66 @@ public class BlockVineGroundPlant extends BlockPlant{ //Metadata 0 - 3 are for t
 	
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z){ //Golly, this is really long and probably way more then is needed...
-		if (world.getBlock(x, y - 1, z).canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this)) {
-			if (world.getBlockMetadata(x, y, z) == 3) {
-				for (int i = 0; i < 4; i++){
-					switch (i){
-					case 0:
-						if (this.isEqualTo(world.getBlock(x, y, z + 1), this) && world.getBlockMetadata(x, y, z + 1) > 3){
-							return true;
-						}
-						break;
-					case 1:
-						if (this.isEqualTo(world.getBlock(x + 1, y, z), this) && world.getBlockMetadata(x + 1, y, z) > 3){
-							return true;
-						}
-						break;
-					case 2:
-						if (this.isEqualTo(world.getBlock(x, y, z - 1), this) && world.getBlockMetadata(x, y, z - 1) > 3){
-							return true;
-						}
-						break;
-					case 3:
-						if (this.isEqualTo(world.getBlock(x - 1, y, z), this) && world.getBlockMetadata(x - 1, y, z) > 3){
-							return true;
-						}
-						break;
-					}
-				}
-			} else if (world.getBlockMetadata(x, y, z) > 3) {
-				for (int i = 0; i < 4; i++){
-					switch (i){
-					case 0:
-						if (this.isEqualTo(world.getBlock(x, y, z + 1), this) && world.getBlockMetadata(x, y, z + 1) == 3){
-							return true;
-						}
-						break;
-					case 1:
-						if (this.isEqualTo(world.getBlock(x + 1, y, z), this) && world.getBlockMetadata(x + 1, y, z) == 3){
-							return true;
-						}
-						break;
-					case 2:
-						if (this.isEqualTo(world.getBlock(x, y, z - 1), this) && world.getBlockMetadata(x, y, z - 1) == 3){
-							return true;
-						}
-						break;
-					case 3:
-						if (this.isEqualTo(world.getBlock(x - 1, y, z), this) && world.getBlockMetadata(x - 1, y, z) == 3){
-							return true;
-						}
-						break;
-					}
-				}
-			} else {
-				return true;
-			}
+		if (!super.canBlockStay(world, x, y, z)){
+			return false;
 		}
-		return false;
+		
+		int meta = world.getBlockMetadata(x, y, z);
+		
+		if (meta == 3) { //If meta is 3, it is the first half of the stem, look for the second half near it
+			for (int i = 0; i < 4; i++){
+				switch (i){
+				case 0:
+					if (this.isEqualTo(world.getBlock(x, y, z + 1), this) && world.getBlockMetadata(x, y, z + 1) > 3){
+						return true;
+					}
+					break;
+				case 1:
+					if (this.isEqualTo(world.getBlock(x + 1, y, z), this) && world.getBlockMetadata(x + 1, y, z) > 3){
+						return true;
+					}
+					break;
+				case 2:
+					if (this.isEqualTo(world.getBlock(x, y, z - 1), this) && world.getBlockMetadata(x, y, z - 1) > 3){
+						return true;
+					}
+					break;
+				case 3:
+					if (this.isEqualTo(world.getBlock(x - 1, y, z), this) && world.getBlockMetadata(x - 1, y, z) > 3){
+						return true;
+					}
+					break;
+				}
+			}
+			return false;
+		} else if (meta > 3) { //If meta is greater then 3, it is the second half of the stem, look for the first half near it
+			for (int i = 0; i < 4; i++){
+				switch (i){
+				case 0:
+					if (this.isEqualTo(world.getBlock(x, y, z + 1), this) && world.getBlockMetadata(x, y, z + 1) == 3){
+						return true;
+					}
+					break;
+				case 1:
+					if (this.isEqualTo(world.getBlock(x + 1, y, z), this) && world.getBlockMetadata(x + 1, y, z) == 3){
+						return true;
+					}
+					break;
+				case 2:
+					if (this.isEqualTo(world.getBlock(x, y, z - 1), this) && world.getBlockMetadata(x, y, z - 1) == 3){
+						return true;
+					}
+					break;
+				case 3:
+					if (this.isEqualTo(world.getBlock(x - 1, y, z), this) && world.getBlockMetadata(x - 1, y, z) == 3){
+						return true;
+					}
+					break;
+				}
+			}
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

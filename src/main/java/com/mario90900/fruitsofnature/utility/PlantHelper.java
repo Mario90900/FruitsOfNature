@@ -117,9 +117,9 @@ public class PlantHelper {
 				return false;
 			}
 			
-			TileEntity tempTile = world.getTileEntity(x, y, z);
+			TileEntity tempTile = world.getTileEntity(possibleBlocks.get(blockInt), y, possibleBlocks.get(blockInt + 1));
 			if (!(tempTile instanceof TilePlant)) {
-				world.setBlockToAir(x, y, z);
+				world.setBlockToAir(possibleBlocks.get(blockInt), y, possibleBlocks.get(blockInt + 1));
 				return false;
 			}
 			

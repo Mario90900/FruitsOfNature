@@ -30,12 +30,13 @@ public class TileVineGroundPlant extends TilePlant{
 			compValue = compValue/2;
 		}
 		
-		LogHelper.info("Wow! I got to the Blocktick! This is the compValue: " + compValue + " and this is the chance: " + chance);
 		if (chance <= compValue) {
 			int meta = world.getBlockMetadata(x, y, z);
 			if (meta == 2) {
 				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
 				PlantHelper.vineGroundPlantExpand(world, this, plantBlock, x, y, z);
+			} else if (meta >= 8) {
+				world.setBlockMetadataWithNotify(x, y, z, 7, 2);
 			} else {
 				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
 			}

@@ -99,8 +99,6 @@ public class BlockVine extends BlockWallPlant implements ITileEntityProvider, IG
 				PlantHelper.setStats(itemSeed, potency, yield, growth);
 				ret.add(itemSeed);
 			}
-			
-			removeTileEnt(world, x, y, z, metadata);
 		}
 
         return ret;

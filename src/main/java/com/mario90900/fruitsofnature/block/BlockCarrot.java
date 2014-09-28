@@ -97,7 +97,6 @@ public class BlockCarrot extends BlockPlant implements ITileEntityProvider, IGro
 				PlantHelper.setStats(itemSeed, potency, yield, growth);
 				ret.add(itemSeed);
 			}
-			removeTileEnt(world, x, y, z, metadata);
 		}
 		
         return ret;

@@ -22,7 +22,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
+public abstract class BlockPlant extends BlockFON implements IPlantable, IGrowable {
 	
 	@SideOnly(Side.CLIENT)
     protected IIcon[] icons;
@@ -42,26 +42,26 @@ public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
 	}
 	
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
-    {
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
         super.onNeighborBlockChange(world, x, y, z, block);
         this.checkAndDropBlock(world, x, y, z);
     }
 	
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand){
-		this.checkAndDropBlock(world, x, y, z);
+		super.updateTick(world, x, y, z, rand);
+		this.checkAndDropBlock(world, x, y, z); //This will see if the block is able to stay, and if not, removes it
 	}
 	
 	protected void checkAndDropBlock(World world, int x, int y, int z) {
-        if (!this.canBlockStay(world, x, y, z)) {
+        if (!this.canBlockStay(world, x, y, z)) { //The check to see if the block can stay
             this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
             world.setBlock(x, y, z, getBlockById(0), 0, 2);
         }
     }
 	
 	public boolean canBlockStay(World world, int x, int y, int z) { //May need to be overwritten to allow for special (Vine and others) plants
-        return  world.getBlock(x, y - 1, z).canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
+        return world.getBlock(x, y - 1, z).canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
     }
 	
 	@SideOnly(Side.CLIENT)
@@ -80,17 +80,6 @@ public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
             this.icons[i] = iconReg.registerIcon(String.format("%s" + i, getUnwrappedUnlocalizedName(this.getUnlocalizedName())));
         }
     }
-	
-	@Override
-	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-		return;
-	}
-	
-	public void removeTileEnt(World world, int x, int y, int z, int metadata){
-		if (hasTileEntity(metadata)) {
-            world.removeTileEntity(x, y, z);
-        }
-	}
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_) {
         return null;
@@ -123,11 +112,12 @@ public class BlockPlant extends BlockFON implements IPlantable, IGrowable {
 
 	//IPlantable methods
 	@Override
-	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
+	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {//Only called by canSustainPlant!
 		if (this == ModBlocks.wheatPlant) return EnumPlantType.Crop;
 		if (this == ModBlocks.potatoPlant) return EnumPlantType.Crop;
 		if (this == ModBlocks.carrotPlant) return EnumPlantType.Crop;
 		if (this == ModBlocks.lilypadPlant) return EnumPlantType.Water;
+		if (this == ModBlocks.pumpkinPlant) return EnumPlantType.Crop;
 		return EnumPlantType.Plains;
 	}
 
