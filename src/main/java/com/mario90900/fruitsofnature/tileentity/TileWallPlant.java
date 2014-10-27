@@ -2,8 +2,8 @@ package com.mario90900.fruitsofnature.tileentity;
 
 import java.util.Random;
 
-import com.mario90900.fruitsofnature.block.BlockVine;
-import com.mario90900.fruitsofnature.block.BlockWallPlant;
+import com.mario90900.fruitsofnature.block.plants.BlockVine;
+import com.mario90900.fruitsofnature.block.plants.BlockWallPlant;
 import com.mario90900.fruitsofnature.init.ModBlocks;
 import com.mario90900.fruitsofnature.utility.PlantHelper;
 
@@ -11,7 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class TileWallPlant extends TilePlant{
+public abstract class TileWallPlant extends TilePlant{
 	protected Block plantBlock;
 	
 	public TileWallPlant(Block plant){

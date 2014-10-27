@@ -3,7 +3,7 @@ package com.mario90900.fruitsofnature.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityFON extends TileEntity{
+public abstract class TileEntityFON extends TileEntity{
 	protected ForgeDirection orientation;
     protected String customName;
     protected String owner;

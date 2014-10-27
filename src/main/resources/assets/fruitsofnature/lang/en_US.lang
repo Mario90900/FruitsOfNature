@@ -8,6 +8,15 @@ item.fruitsofnature:carrotCrop.name=Carrot
 item.fruitsofnature:lilypadSeeds.name=Lilypad Seeds
 item.fruitsofnature:vineSeeds.name=Vine Seeds
 item.fruitsofnature:pumpkinSeeds.name=Pumpkin Seeds
+item.fruitsofnature:pumpkinCrop.name=Pumpkin
+item.fruitsofnature:melonSeeds.name=Watermelon Seeds
+item.fruitsofnature:melonCrop.name=Watermelon
+item.fruitsofnature:redMushSeeds.name=Red Mushroom Spores
+item.fruitsofnature:redMushCrop.name=Red Mushroom
+item.fruitsofnature:brownMushSeeds.name=Brown Mushroom Spores
+item.fruitsofnature:brownMushCrop.name=Brown Mushroom
+item.fruitsofnature:cocoaSeeds.name=Cocoa Seeds
+item.fruitsofnature:cocoaCrop.name=Cocoa Beans
 
 item.fruitsofnature:hunger.name=Debug Item Hunger
 
@@ -18,6 +27,10 @@ tile.fruitsofnature:carrotPlant.name=Carrots
 tile.fruitsofnature:lilypadPlant.name=Lilypad
 tile.fruitsofnature:vinePlant.name=Vines
 tile.fruitsofnature:pumpkinPlant.name=Pumpkin Vine
+tile.fruitsofnature:melonPlant.name=Watermelon Vine
+tile.fruitsofnature:redMushPlant.name=Red Mushrooms
+tile.fruitsofnature:brownMushPlant.name=Brown Mushrooms
+tile.fruitsofnature:cocoaPlant.name=Cocoa Pod
 
 # Creative Tabs
 itemGroup.fruitsofnature=Fruits of Nature

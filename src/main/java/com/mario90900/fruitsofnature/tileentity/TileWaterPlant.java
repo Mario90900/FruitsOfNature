@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class TileWaterPlant extends TilePlant{
+public abstract class TileWaterPlant extends TilePlant{
 	public TileWaterPlant(){
 		super();
 	}

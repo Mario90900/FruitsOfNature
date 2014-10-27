@@ -22,8 +22,7 @@ public class ItemStatedFood extends ItemFONFood{
 	@Override //Adding the information on the Potency, Yield, and Growth to the tooltip
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag){
 		String potency;
-		String yield;
-		String growth;
+		
 		int level = PlantHelper.getPotency(stack);
 		switch(level){
 		case 0:
@@ -45,51 +44,8 @@ public class ItemStatedFood extends ItemFONFood{
 			potency = StringUtil.localize("plants.stats.level.none");
 			break;
 		}
-		level = PlantHelper.getYield(stack);
-		switch(level){
-		case 0:
-			yield = StringUtil.localize("plants.stats.level.vlow");
-			break;
-		case 1:
-			yield = StringUtil.localize("plants.stats.level.low");
-			break;
-		case 2:
-			yield = StringUtil.localize("plants.stats.level.avg");
-			break;
-		case 3:
-			yield = StringUtil.localize("plants.stats.level.high");
-			break;
-		case 4:
-			yield = StringUtil.localize("plants.stats.level.vhigh");
-			break;
-		default:
-			yield = StringUtil.localize("plants.stats.level.none");
-			break;
-		}
-		level = PlantHelper.getGrowth(stack);
-		switch(level){
-		case 0:
-			growth = StringUtil.localize("plants.stats.level.vlow");
-			break;
-		case 1:
-			growth = StringUtil.localize("plants.stats.level.low");
-			break;
-		case 2:
-			growth = StringUtil.localize("plants.stats.level.avg");
-			break;
-		case 3:
-			growth = StringUtil.localize("plants.stats.level.high");
-			break;
-		case 4:
-			growth = StringUtil.localize("plants.stats.level.vhigh");
-			break;
-		default:
-			growth = StringUtil.localize("plants.stats.level.none");
-			break;
-		}
+		
 		list.add(StringUtil.localize("plants.stats.names.potency") + ": " + potency);
-		list.add(StringUtil.localize("plants.stats.names.yield") + ": " + yield);
-		list.add(StringUtil.localize("plants.stats.names.growth") + ": " + growth);
 	}
 	
 	@Override

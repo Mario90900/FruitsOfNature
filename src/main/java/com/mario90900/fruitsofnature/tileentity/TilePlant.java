@@ -1,17 +1,21 @@
 package com.mario90900.fruitsofnature.tileentity;
 
-import com.mario90900.fruitsofnature.reference.AveragePlantStats;
+import java.util.Random;
+
+import com.mario90900.fruitsofnature.reference.PlantStats;
 import com.mario90900.fruitsofnature.utility.NBTHelper;
+import com.mario90900.fruitsofnature.utility.PlantHelper;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 
 /*
  * The Basic TileEntity for any growing plant block.
  * Holds the stats (Both the int value 0-4 and the float percentage)
  * of the growing plant here.
  */
-public class TilePlant extends TileEntityFON {
+public abstract class TilePlant extends TileEntityFON implements IStatTilePlant{
 	protected float potency;
 	protected int potencyInt;
 	protected float yield;
@@ -70,67 +74,91 @@ public class TilePlant extends TileEntityFON {
 	public void setStats(int pot, int yld, int grow){
 		switch (pot) {
 		case 0:
-			potency = AveragePlantStats.VERYLOW_MOD;
+			potency = PlantStats.VERYLOW_MOD;
 			break;
 		case 1:
-			potency = AveragePlantStats.LOW_MOD;
+			potency = PlantStats.LOW_MOD;
 			break;
 		case 2:
-			potency = AveragePlantStats.AVERAGE_MOD;
+			potency = PlantStats.AVERAGE_MOD;
 			break;
 		case 3:
-			potency = AveragePlantStats.HIGH_MOD;
+			potency = PlantStats.HIGH_MOD;
 			break;
 		case 4:
-			potency = AveragePlantStats.VERYHIGH_MOD;
+			potency = PlantStats.VERYHIGH_MOD;
 			break;
 		default:
-			potency = AveragePlantStats.VERYLOW_MOD;
+			potency = PlantStats.VERYLOW_MOD;
 		}
 		
 		switch (yld) {
 		case 0:
-			yield = AveragePlantStats.VERYLOW_MOD;
+			yield = PlantStats.VERYLOW_MOD;
 			break;
 		case 1:
-			yield = AveragePlantStats.LOW_MOD;
+			yield = PlantStats.LOW_MOD;
 			break;
 		case 2:
-			yield = AveragePlantStats.AVERAGE_MOD;
+			yield = PlantStats.AVERAGE_MOD;
 			break;
 		case 3:
-			yield = AveragePlantStats.HIGH_MOD;
+			yield = PlantStats.HIGH_MOD;
 			break;
 		case 4:
-			yield = AveragePlantStats.VERYHIGH_MOD;
+			yield = PlantStats.VERYHIGH_MOD;
 			break;
 		default:
-			yield = AveragePlantStats.VERYLOW_MOD;
+			yield = PlantStats.VERYLOW_MOD;
 		}
 		
 		switch (grow) {
 		case 0:
-			growth = AveragePlantStats.VERYLOW_MOD;
+			growth = PlantStats.VERYLOW_MOD;
 			break;
 		case 1:
-			growth = AveragePlantStats.LOW_MOD;
+			growth = PlantStats.LOW_MOD;
 			break;
 		case 2:
-			growth = AveragePlantStats.AVERAGE_MOD;
+			growth = PlantStats.AVERAGE_MOD;
 			break;
 		case 3:
-			growth = AveragePlantStats.HIGH_MOD;
+			growth = PlantStats.HIGH_MOD;
 			break;
 		case 4:
-			growth = AveragePlantStats.VERYHIGH_MOD;
+			growth = PlantStats.VERYHIGH_MOD;
 			break;
 		default:
-			growth = AveragePlantStats.VERYLOW_MOD;
+			growth = PlantStats.VERYLOW_MOD;
 		}
 		
 		potencyInt = pot;
 		yieldInt = yld;
 		growthInt = grow;
+	}
+	
+	public int calcYield(Random rand, float avgYield){
+		float numDropFloat = avgYield * getYield();
+		int numDrops = (int) Math.floor(numDropFloat);
+		float numDropsRemain = numDropFloat - numDrops;
+		
+		if (numDropsRemain == 0){
+			return numDrops;
+		} else {
+			numDrops = numDrops + PlantHelper.calcYieldRemainder(rand, numDropsRemain);
+			return numDrops;
+		}
+	}
+	
+	public int calcYieldRange(Random rand, float avgMin, float avgMax){
+		int min = calcYield(rand, avgMin);
+		int max = calcYield(rand, avgMax);
+		
+		if (min > max){
+			return min;
+		}
+		
+		return MathHelper.getRandomIntegerInRange(rand, min, max);
 	}
 	
 	public float getPotency(){

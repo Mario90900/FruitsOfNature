@@ -6,25 +6,18 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.mario90900.fruitsofnature.init.ModBlocks;
-import com.mario90900.fruitsofnature.reference.AveragePlantStats;
+import com.mario90900.fruitsofnature.reference.PlantStats;
 
-public class TileEntityVinePlant extends TileWallPlant{
+public class TileEntityVinePlant extends TileWallPlant {
 	public TileEntityVinePlant(){
 		super(ModBlocks.vinePlant);
 	}
 	
 	public void onBlockTick(World world, int x, int y, int z, Random rand){ //This will calculate when the plant should grow, and change the meta accordingly
-		super.onBlockTick(world, x, y, z, rand, AveragePlantStats.VINE_GROWTH);
+		super.onBlockTick(world, x, y, z, rand, PlantStats.VINE_GROWTH);
 	}
 	
 	public int calcYield(Random rand){
-		int yieldInt = getYieldInt();
-		
-		switch (yieldInt){
-		case 0:
-			int temp = MathHelper.getRandomIntegerInRange(rand, 0, 1);
-		default:
-			return Math.round((float)AveragePlantStats.VINE_YIELD * getYield());
-		}
+		return calcYield(rand, PlantStats.VINE_YIELD);
 	}
 }

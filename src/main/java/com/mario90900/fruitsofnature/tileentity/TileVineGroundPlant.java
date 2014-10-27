@@ -2,7 +2,7 @@ package com.mario90900.fruitsofnature.tileentity;
 
 import java.util.Random;
 
-import com.mario90900.fruitsofnature.block.BlockWallPlant;
+import com.mario90900.fruitsofnature.block.plants.BlockWallPlant;
 import com.mario90900.fruitsofnature.utility.LogHelper;
 import com.mario90900.fruitsofnature.utility.PlantHelper;
 
@@ -10,7 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class TileVineGroundPlant extends TilePlant{
+public abstract class TileVineGroundPlant extends TilePlant{
 	protected Block plantBlock;
 	
 	public TileVineGroundPlant(Block plant){
@@ -35,8 +35,6 @@ public class TileVineGroundPlant extends TilePlant{
 			if (meta == 2) {
 				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
 				PlantHelper.vineGroundPlantExpand(world, this, plantBlock, x, y, z);
-			} else if (meta >= 8) {
-				world.setBlockMetadataWithNotify(x, y, z, 7, 2);
 			} else {
 				world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
 			}

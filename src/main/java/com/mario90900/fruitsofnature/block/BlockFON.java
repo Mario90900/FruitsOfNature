@@ -9,7 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class BlockFON extends Block{
+public abstract class BlockFON extends Block{
 	public BlockFON(Material material){
 		super(material);
 		this.setCreativeTab(CreativeTabFON.FON_TAB);

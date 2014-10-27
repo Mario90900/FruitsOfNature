@@ -6,4 +6,6 @@ public class RenderIds {
 	public static int RenderLilypad;
 	public static int RenderVine;
 	public static int RenderPumpkinVine;
+	public static int RenderMelonVine;
+	public static int RenderCocoa;
 }

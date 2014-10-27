@@ -1,6 +1,7 @@
 package com.mario90900.fruitsofnature.utility;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -80,25 +81,25 @@ public class PlantHelper {
 		for (int i = 0; i < 4; i++){
 			switch (i) {
 			case 0:
-				if (world.isAirBlock(x, y, z + 1) && world.getBlock(x, y - 1, z + 1) == Blocks.farmland){
+				if (world.isAirBlock(x, y, z + 1) && (world.getBlock(x, y - 1, z + 1).isNormalCube() || world.getBlock(x, y - 1, z + 1) == Blocks.farmland)){
 					possibleBlocks.add(x);
 					possibleBlocks.add(z + 1);
 				}
 				break;
 			case 1:
-				if (world.isAirBlock(x + 1, y, z) && world.getBlock(x + 1, y - 1, z) == Blocks.farmland){
+				if (world.isAirBlock(x + 1, y, z) && (world.getBlock(x + 1, y - 1, z).isNormalCube() || world.getBlock(x + 1, y - 1, z) == Blocks.farmland)){
 					possibleBlocks.add(x + 1);
 					possibleBlocks.add(z);
 				}
 				break;
 			case 2:
-				if (world.isAirBlock(x, y, z - 1) && world.getBlock(x, y - 1, z - 1) == Blocks.farmland){
+				if (world.isAirBlock(x, y, z - 1) && (world.getBlock(x, y - 1, z - 1).isNormalCube() || world.getBlock(x, y - 1, z - 1) == Blocks.farmland)){
 					possibleBlocks.add(x);
 					possibleBlocks.add(z - 1);
 				}
 				break;
 			case 3:
-				if (world.isAirBlock(x - 1, y, z) && world.getBlock(x - 1, y - 1, z) == Blocks.farmland){
+				if (world.isAirBlock(x - 1, y, z) && (world.getBlock(x - 1, y - 1, z).isNormalCube() || world.getBlock(x - 1, y - 1, z) == Blocks.farmland)){
 					possibleBlocks.add(x - 1);
 					possibleBlocks.add(z);
 				}
@@ -109,17 +110,21 @@ public class PlantHelper {
 		int numOptions = possibleBlocks.size() / 2;
 		
 		if (numOptions == 0) {
+			world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+			world.setBlock(x, y, z, Blocks.air, 0, 2);
 			return false;
 		} else {
 			int blockInt = MathHelper.getRandomIntegerInRange(world.rand, 0, numOptions - 1);
-			boolean placed = world.setBlock(possibleBlocks.get(blockInt), y, possibleBlocks.get(blockInt + 1), plant, 4, 2);
+			boolean placed = world.setBlock(possibleBlocks.get(blockInt * 2), y, possibleBlocks.get((blockInt * 2) + 1), plant, 4, 2);
 			if (!placed){
+				world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+				world.setBlock(x, y, z, Blocks.air, 0, 2);
 				return false;
 			}
 			
-			TileEntity tempTile = world.getTileEntity(possibleBlocks.get(blockInt), y, possibleBlocks.get(blockInt + 1));
+			TileEntity tempTile = world.getTileEntity(possibleBlocks.get(blockInt * 2), y, possibleBlocks.get((blockInt * 2) + 1));
 			if (!(tempTile instanceof TilePlant)) {
-				world.setBlockToAir(possibleBlocks.get(blockInt), y, possibleBlocks.get(blockInt + 1));
+				world.setBlockToAir(possibleBlocks.get(blockInt * 2), y, possibleBlocks.get((blockInt * 2) + 1));
 				return false;
 			}
 			
@@ -134,6 +139,10 @@ public class PlantHelper {
 		setPotency(stack, potency);
 		setYield(stack, yield);
 		setGrowth(stack, growth);
+	}
+	
+	public static void setCropStats(ItemStack stack, int potency){
+		setPotency(stack, potency);
 	}
 	
 	public static void setPotency(ItemStack stack, int value){
@@ -158,5 +167,25 @@ public class PlantHelper {
 	
 	public static int getGrowth(ItemStack stack){
 		return NBTHelper.getInt(stack, "Growth");
+	}
+	
+	public static int calcYieldRemainder(Random rand, float remainder){
+		if (remainder == 0.5f){
+			return MathHelper.getRandomIntegerInRange(rand, 0, 1);
+		} else if (remainder == .25){
+			int temp = MathHelper.getRandomIntegerInRange(rand, -2, 1);
+			if (temp <= 0){
+				return 0;
+			} else {
+				return temp;
+			}
+		} else {
+			int temp = MathHelper.getRandomIntegerInRange(rand, 0, 3);
+			if (temp >= 1){
+				return 1;
+			} else {
+				return temp;
+			}
+		}
 	}
 }

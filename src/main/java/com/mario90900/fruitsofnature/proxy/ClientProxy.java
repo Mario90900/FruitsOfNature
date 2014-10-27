@@ -15,5 +15,9 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(RenderIds.RenderVine, new FONBlockRenderers());
 		RenderIds.RenderPumpkinVine = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(RenderIds.RenderPumpkinVine, new FONBlockRenderers());
+		RenderIds.RenderMelonVine = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(RenderIds.RenderMelonVine, new FONBlockRenderers());
+		RenderIds.RenderCocoa = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(RenderIds.RenderCocoa, new FONBlockRenderers());
 	}
 }

@@ -34,4 +34,24 @@ public final class VanillaPlantStats {
 	public static final int PUMPKIN_POTENCY = 1;
 	public static final int PUMPKIN_YIELD = 1;
 	public static final int PUMPKIN_GROWTH = 1;
+	
+	//Melons
+	public static final int MELON_POTENCY = 1;
+	public static final int MELON_YIELD = 1;
+	public static final int MELON_GROWTH = 1;
+	
+	//Red Mushrooms
+	public static final int RED_MUSH_POTENCY = 2;
+	public static final int RED_MUSH_YIELD = 1;
+	public static final int RED_MUSH_GROWTH = 1;
+	
+	//Brown Mushrooms
+	public static final int BROWN_MUSH_POTENCY = 1;
+	public static final int BROWN_MUSH_YIELD = 2;
+	public static final int BROWN_MUSH_GROWTH = 1;
+	
+	//Cocoa
+	public static final int COCOA_POTENCY = 2;
+	public static final int COCOA_YIELD = 1;
+	public static final int COCOA_GROWTH = 1;
 }
